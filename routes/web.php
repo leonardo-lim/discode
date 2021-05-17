@@ -13,4 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'MainController@index');
+Route::get('/about', 'MainController@about');
+Route::get('/thread', 'MainController@thread');
