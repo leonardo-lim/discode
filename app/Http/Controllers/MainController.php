@@ -15,9 +15,4 @@ class MainController extends Controller
         $content = 'about';
         return view('main', compact('content'));
     }
-
-    public function thread() {
-        $content = 'thread';
-        return view('main', compact('content'));
-    }
 }

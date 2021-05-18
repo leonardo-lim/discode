@@ -1,5 +1,3 @@
-@extends('thread.main')
-
 @section('content')
     <div class="row">
         <div class="jumbotron text-white text-center">
