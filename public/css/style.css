@@ -1,3 +1,4 @@
+/* Main */
 * {
     font-family: 'Montserrat', sans-serif;
 }
@@ -17,25 +18,85 @@ nav a:hover {
     color: aqua;
 }
 
-.nav-item .nav-link {
+.nav-item .menu, .nav-item .nav-link {
     color: white;
     border-bottom: 0 solid aqua;
 }
 
-.nav-item .nav-link:hover {
+.nav-item .menu:hover {
     color: white;
     padding-bottom: 3px;
     border-bottom: 3px solid aqua;
 }
 
-.nav-item .nav-link.active {
+.nav-item .nav-link:hover {
+    color: white;
+}
+
+.nav-item .menu.active, .dropdown .nav-link.active {
     padding-bottom: 3px;
     border-bottom: 3px solid aqua;
 }
 
-.dropdown-item {
-    text-transform: none;
-    margin-top: 0;
+.dropdown .dropdown-menu {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+}
+
+.dropdown .dropdown-item {
+    margin: 8px 0 0 25px;
+    padding: 0;
+    width: 80px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.dropdown .dropdown-item:hover {
+    background-color: transparent;
+    color: white;
+    border-bottom: 3px solid aqua;
+}
+
+.nav-item .btn-info {
+    background-color: #005792;
+    border-color: #005792;
+}
+
+.nav-item .btn-info:hover {
+    background-color: #004370;
+    border-color: #004370;
+}
+
+@media (min-width: 992px) {
+	.navbar .nav-item .dropdown-menu {
+        display: none;
+    }
+
+	.navbar .nav-item:hover .dropdown-menu {
+        display: block;
+    }
+}
+
+.navbar-toggler .fa-bars {
+    color: white;
+    font-size: 30px;
+}
+
+.collapse.show {
+    position: relative;
+    z-index: 1;
+    margin-top: 20px;
+    background-color: black;
+    border-radius: 10px;
+    transition: .1s;
+}
+
+.collapse.show .nav-link {
+    margin-left: 10px;
+    margin-right: 10px;
+    border-bottom: none;
+    text-align: center;
 }
 
 .jumbotron {
@@ -62,4 +123,25 @@ video {
         width: auto;
         height: 100%;
     }
+}
+
+/* Read */
+.card {
+    box-shadow: rgba(0, 225, 255, 0.5) 0px 4px 16px, rgba(0, 255, 255, 0.5) 0px 8px 32px;
+    transform: scale(1);
+    transition: .3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.row .thread-tab {
+    color: white;
+    text-decoration: none;
+}
+
+.row .thread-tab.active {
+    padding-bottom: 8px;
+    border-bottom: 3px solid aqua;
 }

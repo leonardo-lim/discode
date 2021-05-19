@@ -25,38 +25,38 @@
                     <img src="{{ asset('img/logo.png') }}" alt="Discode Logo" class="logo">
                     <a class="navbar-brand ms-3" href="/">Discode</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"><i class="fa fa-bars"></i></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
                                 @if ($content === 'home')
-                                    <a class="nav-link active" href="/">Home</a>
+                                    <a class="nav-link menu active" href="/">Home</a>
                                 @else
-                                    <a class="nav-link" href="/">Home</a>
+                                    <a class="nav-link menu" href="/">Home</a>
                                 @endif
                             </li>
                             <li class="nav-item">
                                 @if ($content === 'about')
-                                    <a class="nav-link active" href="/about">About</a>
+                                    <a class="nav-link menu active" href="/about">About</a>
                                 @else
-                                    <a class="nav-link" href="/about">About</a>
+                                    <a class="nav-link menu" href="/about">About</a>
                                 @endif
                             </li>
                             <li class="nav-item dropdown">
-                                @if ($content === 'thread' || $content === 'tag' || $content === 'user')
-                                    <a class="nav-link  active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Forum
-                                    </a>
+                                @if ($content === 'thread')
+                                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Thread</a>
+                                @elseif ($content === 'tag')
+                                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tag</a>
+                                @elseif ($content === 'user')
+                                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">User</a>
                                 @else
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Forum
-                                    </a>
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Forum</a>
                                 @endif
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="/thread">Thread</a></li>
-                                    <li><a class="dropdown-item" href="/tag">Tag</a></li>
-                                    <li><a class="dropdown-item" href="/user">User</a></li>
+                                    <li><a class="dropdown-item menu" href="/thread">Thread</a></li>
+                                    <li><a class="dropdown-item menu" href="/tag">Tag</a></li>
+                                    <li><a class="dropdown-item menu" href="/user">User</a></li>
                                 </ul>
                             </li>
                             {{-- <li class="nav-item dropdown">
@@ -72,10 +72,10 @@
                         </ul>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Login</a>
+                                <a class="nav-link btn btn-info" href="#">Register</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Register</a>
+                                <a class="nav-link btn btn-primary" href="#">Login</a>
                             </li>
                         </ul>
                         {{-- <form class="d-flex">
@@ -87,6 +87,15 @@
             </nav>
         </div>
 
+        <div class="row">
+            @if (session('success'))
+                <div class="alert alert-success w-50 m-auto mt-3 text-center alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+        </div>
+
         @if ($content === 'home')
             @include('home')
             @yield('content')
@@ -96,10 +105,21 @@
         @elseif ($content === 'thread')
             @include('thread.read')
             @yield('content')
+        @elseif ($content === 'create')
+            @include('thread.create')
+            @yield('content')
+        @elseif ($content === 'edit')
+            @include('thread.edit')
+            @yield('content')
+        @elseif ($content === 'tag')
+            @include('tag')
+            @yield('content')
+        @elseif ($content === 'user')
+            @include('user')
+            @yield('content')
         @endif
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/card.js') }}"></script>
 </body>
 </html>

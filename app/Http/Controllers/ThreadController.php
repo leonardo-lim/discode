@@ -27,7 +27,8 @@ class ThreadController extends Controller
      */
     public function create()
     {
-        //
+        $content = 'create';
+        return view('main', compact('content'));
     }
 
     /**
@@ -38,7 +39,13 @@ class ThreadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required | max:255',
+            'content' => 'required | max:255'
+        ]);
+
+        Thread::create($request->all());
+        return redirect(url('/thread'))->with('success', 'A thread added successfully.');
     }
 
     /**
