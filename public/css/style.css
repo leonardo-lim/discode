@@ -145,3 +145,41 @@ video {
     padding-bottom: 8px;
     border-bottom: 3px solid aqua;
 }
+
+.row .thread-time, .row .thread-time-detail {
+    cursor: default;
+    transform: scale(1);
+}
+
+.row .thread-time:hover, .row .thread-time-detail  {
+    display: none;
+}
+
+.row .thread-time:hover + .thread-time-detail {
+    display: inline-block;
+    transform: scale(1.1);
+}
+
+/* Create */
+#addThread input, #addThread textarea {
+    background-color: transparent;
+    color: white;
+}
+
+#addThread input:hover, #addThread textarea:hover {
+    box-shadow: rgba(0, 225, 255, 0.5) 0px 4px 16px, rgba(0, 255, 255, 0.5) 0px 8px 32px;
+}
+
+.col-6 .btn-info {
+    background-color: #005792;
+    border-color: #005792;
+}
+
+.col-6 .btn-info:hover {
+    background-color: #004370;
+    border-color: #004370;
+}
+
+::placeholder {
+    color: #eeeeee !important;
+}
