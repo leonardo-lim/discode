@@ -27,7 +27,8 @@ class ThreadController extends Controller
      */
     public function create()
     {
-        //
+        $content = 'create';
+        return view('main', compact('content'));
     }
 
     /**
@@ -38,7 +39,13 @@ class ThreadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required | max:255',
+            'content' => 'required | max:255'
+        ]);
+
+        Thread::create($request->all());
+        return redirect(url('/thread'))->with('success', 'A thread added successfully.');
     }
 
     /**
@@ -49,7 +56,11 @@ class ThreadController extends Controller
      */
     public function show($id)
     {
-        //
+        $content = 'reply';
+        $dataReply = Thread::with('user', 'reply')->orderBy('updated_at', 'desc')->where('id', $id)->get();
+        // $dataUser = User::with('thread')->orderBy('updated_at', 'desc')->where('id', $id)->get();
+        // dd($dataReply);
+        return view('main', compact('dataReply', 'content'));
     }
 
     /**
@@ -60,7 +71,9 @@ class ThreadController extends Controller
      */
     public function edit($id)
     {
-        //
+        $content = 'edit';
+        $thread = Thread::where('id', $id)->first();
+        return view('main', compact('thread', 'content'));
     }
 
     /**
@@ -72,7 +85,11 @@ class ThreadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Thread::where('id', '=', $id)->update([
+            'title' => $request->title,
+            'content' => $request->content,
+        ]);
+        return redirect(url('/thread') . '/' . $request->id);
     }
 
     /**

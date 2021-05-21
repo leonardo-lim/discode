@@ -16,4 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'MainController@index');
 Route::get('/about', 'MainController@about');
 Route::get('/thread', 'ThreadController@index');
+Route::get('/thread/create', 'ThreadController@create');
+Route::get('/thread/edit/{id}', 'ThreadController@edit');
+Route::post('/thread/{id}', 'ThreadController@update');
+Route::get('/thread/{id}', 'ThreadController@show');
 Route::resource('thread', 'ThreadController');
