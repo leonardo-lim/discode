@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Thread;
+use App\Reply;
 
 class ThreadController extends Controller
 {
@@ -14,10 +15,10 @@ class ThreadController extends Controller
      */
     public function index()
     {
-        $threads = Thread::orderBy('updated_at', 'desc')->get();
+        $threads = Thread::with('user')->orderBy('updated_at', 'desc')->get();
+        $total = Thread::count();
         $content = 'thread';
-        // dd($threads);
-        return view('main', compact('threads', 'content'));
+        return view('main', compact('threads', 'total', 'content'));
     }
 
     /**
@@ -56,11 +57,13 @@ class ThreadController extends Controller
      */
     public function show($id)
     {
-        $content = 'reply';
-        $dataReply = Thread::with('user', 'reply')->orderBy('updated_at', 'desc')->where('id', $id)->get();
+        $thread = Thread::find($id);
+        $content = 'detail';
+        $replies = Reply::with('user')->orderBy('updated_at', 'desc')->get();
+        // $users = Reply::with('user')->get();
         // $dataUser = User::with('thread')->orderBy('updated_at', 'desc')->where('id', $id)->get();
         // dd($dataReply);
-        return view('main', compact('dataReply', 'content'));
+        return view('main', compact('thread', 'replies', 'content'));
     }
 
     /**
@@ -71,8 +74,8 @@ class ThreadController extends Controller
      */
     public function edit($id)
     {
+        $thread = Thread::find($id);
         $content = 'edit';
-        $thread = Thread::where('id', $id)->first();
         return view('main', compact('thread', 'content'));
     }
 
@@ -85,11 +88,18 @@ class ThreadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Thread::where('id', '=', $id)->update([
-            'title' => $request->title,
-            'content' => $request->content,
+        $request->validate([
+            'title' => 'required | max:255',
+            'content' => 'required | max:255'
         ]);
-        return redirect(url('/thread') . '/' . $request->id);
+
+        $thread = Thread::find($id);
+        $thread->title = $request->title;
+        $thread->content = $request->content;
+        $thread->updated_at = date('Y-m-d H:i:s');
+        $thread->save();
+
+        return redirect(url('/thread'))->with('success', 'A thread updated successfully.');
     }
 
     /**
@@ -100,6 +110,9 @@ class ThreadController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $thread = Thread::find($id);
+        $thread->delete();
+
+        return redirect(url('/thread'))->with('success', 'A thread deleted successfully.');
     }
 }

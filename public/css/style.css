@@ -129,14 +129,17 @@ video {
 
 /* Read */
 .card {
-    box-shadow: rgba(0, 225, 255, 0.5) 0px 4px 16px,
-        rgba(0, 255, 255, 0.5) 0px 8px 32px;
+    box-shadow: rgba(0, 225, 255, 0.5) 0px 4px 16px, rgba(0, 255, 255, 0.5) 0px 8px 32px;
     transform: scale(1);
     transition: 0.3s;
 }
 
 .card:hover {
     transform: scale(1.05);
+}
+
+.card .card-header {
+    background-image: linear-gradient(to right bottom, #00264D, #02386E);
 }
 
 .row .thread-tab {
@@ -151,6 +154,7 @@ video {
 
 .row .thread-time,
 .row .thread-time-detail {
+    background-color: black !important;
     cursor: default;
     transform: scale(1);
 }
@@ -165,17 +169,30 @@ video {
     transform: scale(1.1);
 }
 
-/* Create */
+.row .btn-info {
+    background-color: #005792;
+    border-color: #005792;
+}
+
+.row .btn-info:hover {
+    background-color: #004370;
+    border-color: #004370;
+}
+
+/* Create & Edit */
 #addThread input,
-#addThread textarea {
+#addThread textarea,
+#editThread input,
+#editThread textarea {
     background-color: transparent;
     color: white;
 }
 
 #addThread input:hover,
-#addThread textarea:hover {
-    box-shadow: rgba(0, 225, 255, 0.5) 0px 4px 16px,
-        rgba(0, 255, 255, 0.5) 0px 8px 32px;
+#addThread textarea:hover,
+#editThread input:hover,
+#editThread textarea:hover {
+    box-shadow: rgba(0, 225, 255, 0.3) 0px 4px 16px, rgba(0, 255, 255, 0.3) 0px 8px 32px;
 }
 
 .col-6 .btn-info {
@@ -192,7 +209,7 @@ video {
     color: #eeeeee !important;
 }
 
-/* Reply */
-.cardDetail {
-    background: white;
+/* Detail */
+.card .bg-info {
+    background-color: #005792 !important;
 }

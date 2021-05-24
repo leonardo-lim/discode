@@ -59,16 +59,6 @@
                                     <li><a class="dropdown-item menu" href="/user">User</a></li>
                                 </ul>
                             </li>
-                            {{-- <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Rating
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Most Popular</a></li>
-                                    <li><a class="dropdown-item" href="#">Most Liked</a></li>
-                                    <li><a class="dropdown-item" href="#">Newest</a></li>
-                                </ul>
-                            </li> --}}
                         </ul>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item">
@@ -111,14 +101,14 @@
         @elseif ($content === 'edit')
             @include('thread.edit')
             @yield('content')
+        @elseif ($content === 'detail')
+            @include('thread.detail')
+            @yield('content')
         @elseif ($content === 'tag')
             @include('tag')
             @yield('content')
         @elseif ($content === 'user')
             @include('user')
-            @yield('content')
-        @elseif ($content === 'reply')
-            @include('thread.detail')
             @yield('content')
         @endif
     </div>
