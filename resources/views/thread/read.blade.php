@@ -18,8 +18,8 @@
             @foreach ($threads as $thread)
                 <div class="col-xl-4 col-md-6">
                     <div class="card bg-transparent text-white p-0 mb-5 border-0" style="height: 300px">
-                        <a href="{{ url('/thread/edit') . '/' . $thread->id }}" class="btn btn-warning text-white" style="position: absolute; top: -10px; right: 28px"><i class="fa fa-edit"></i></a>
-                        <form action="{{ url('/thread') . '/' . $thread->id }}" method="POST" class="d-inline">
+                        <a href="/thread/{{$thread->id}}/edit" class="btn btn-warning text-white" style="position: absolute; top: -10px; right: 28px"><i class="fa fa-edit"></i></a>
+                        <form action="{{url('/thread') . '/' . $thread->id}}" method="POST" class="d-inline">
                             @method('delete')
                             @csrf
                             <button type="submit" class="btn btn-danger" style="position: absolute; top: -10px; right: -10px" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
@@ -72,7 +72,7 @@
                                     <p class="questions">
                                         @if (strlen($thread->content) > 110)
                                             {{ substr($thread->content, 0, 110) }}
-                                            <a class="fs-6 text-decoration-none" href="{{ url('thread/') . '/' . $thread->id }}">Read More</a>
+                                            <a class="fs-6 text-decoration-none" href="/thread/{{$thread->id}}">Read More</a>
                                         @else
                                             {{$thread->content}}
                                         @endif
@@ -92,7 +92,7 @@
                                     @foreach ($thread->reply as $reply)
                                         @php($count++)
                                     @endforeach
-                                    <a href="{{ url('thread/') . '/' . $thread->id }}" class="btn btn-info text-white w-100" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i> {{$count}}</a>
+                                    <a href="/thread/{{$thread->id}}" class="btn btn-info text-white w-100" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i> {{$count}}</a>
                                 </div>
                             </div>
                             <div class="tags">

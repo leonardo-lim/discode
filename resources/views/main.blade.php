@@ -79,7 +79,7 @@
 
         <div class="row">
             @if (session('success'))
-                <div class="alert alert-success w-50 m-auto mt-3 text-center alert-dismissible fade show" role="alert">
+                <div class="alert alert-success w-50 m-auto my-3 text-center alert-dismissible fade show" role="alert">
                     {{ session('success') }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
@@ -104,6 +104,10 @@
         @elseif ($content === 'detail')
             @include('thread.detail')
             @yield('content')
+            @include('reply.read')
+            @yield('read')
+            @include('reply.create')
+            @yield('create')
         @elseif ($content === 'tag')
             @include('tag')
             @yield('content')
@@ -114,5 +118,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>

@@ -45,7 +45,12 @@ class ThreadController extends Controller
             'content' => 'required | max:255'
         ]);
 
-        Thread::create($request->all());
+        $thread = new Thread;
+        $thread->title = $request->title;
+        $thread->content = $request->content;
+        $thread->user_id = 1;
+        $thread->save();
+
         return redirect(url('/thread'))->with('success', 'A thread added successfully.');
     }
 

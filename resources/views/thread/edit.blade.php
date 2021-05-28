@@ -2,6 +2,7 @@
     <h1 class="text-white text-center">Edit Thread</h1>
     <div class="container-fluid w-75" id="editThread">
         <form action="{{url('/thread') . '/' . $thread->id}}" method="POST">
+            @method('put')
             @csrf
             <div class="row mt-5">
                 <div class="input-group m-auto mb-3">
