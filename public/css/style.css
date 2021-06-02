@@ -3,6 +3,15 @@
     font-family: "Montserrat", sans-serif;
 }
 
+::-webkit-scrollbar {
+    background-color: #00264d;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #005792;
+    border-radius: 10px;
+}
+
 .logo {
     margin-top: 30px;
 }
@@ -139,6 +148,10 @@ video {
     transform: scale(1.05);
 }
 
+.card .card-header {
+    background-image: linear-gradient(to right bottom, #00264d, #02386e);
+}
+
 .row .thread-tab {
     color: white;
     text-decoration: none;
@@ -151,6 +164,7 @@ video {
 
 .row .thread-time,
 .row .thread-time-detail {
+    background-color: black !important;
     cursor: default;
     transform: scale(1);
 }
@@ -165,17 +179,50 @@ video {
     transform: scale(1.1);
 }
 
-/* Create */
+.row .btn-info {
+    background-color: #005792;
+    border-color: #005792;
+}
+
+.row .btn-info:hover {
+    background-color: #004370;
+    border-color: #004370;
+}
+
+#reply .card,
+#reply textarea {
+    background-color: transparent;
+    color: white;
+}
+
+#reply textarea:hover {
+    box-shadow: rgba(0, 225, 255, 0.3) 0px 4px 16px,
+        rgba(0, 255, 255, 0.3) 0px 8px 32px;
+}
+
+/* Create & Edit */
 #addThread input,
-#addThread textarea {
+#addThread textarea,
+#editThread input,
+#editThread textarea,
+#addReply input,
+#addReply textarea,
+#editReply input,
+#editReply textarea {
     background-color: transparent;
     color: white;
 }
 
 #addThread input:hover,
-#addThread textarea:hover {
-    box-shadow: rgba(0, 225, 255, 0.5) 0px 4px 16px,
-        rgba(0, 255, 255, 0.5) 0px 8px 32px;
+#addThread textarea:hover,
+#editThread input:hover,
+#editThread textarea:hover,
+#addReply input:hover,
+#addReply textarea:hover,
+#editReply input:hover,
+#editReply textarea:hover {
+    box-shadow: rgba(0, 225, 255, 0.3) 0px 4px 16px,
+        rgba(0, 255, 255, 0.3) 0px 8px 32px;
 }
 
 .col-6 .btn-info {
@@ -192,7 +239,7 @@ video {
     color: #eeeeee !important;
 }
 
-/* Reply */
-.cardDetail {
-    background: white;
+/* Detail */
+.card .bg-info {
+    background-color: #005792 !important;
 }

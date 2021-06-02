@@ -1,6 +1,6 @@
 @section('content')
     <h1 class="text-white text-center">Add Thread</h1>
-    <div class="container-fluid w-50" id="addThread">
+    <div class="container-fluid w-75" id="addThread">
         <form action="{{url('/thread')}}" method="POST">
             @csrf
             <div class="row mt-5">
@@ -23,10 +23,10 @@
             
             <div class="row">
                 <div class="col-6">
-                    <a href="/thread" class="btn btn-info text-white d-block">Cancel</a>
+                    <a href="/thread" class="btn btn-info text-white d-block"><i class="fa fa-times"></i> Cancel</a>
                 </div>
                 <div class="col-6">
-                    <button type="submit" class="btn btn-primary w-100">Add</button>    
+                    <button type="submit" class="btn btn-primary w-100"><i class="fa fa-plus"></i> Add</button>    
                 </div>
             </div>
         </form>

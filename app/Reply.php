@@ -10,8 +10,13 @@ class Reply extends Model
 
     protected $fillable = ['content'];
 
-    public function thread()
+    public function user()
     {
-        return $this->belongsTo(Thread::class);
+        return $this->belongsTo(User::class);
+    }
+    
+    public function replies()
+    {
+        return $this->hasMany(Reply::class, 'parent_id');
     }
 }

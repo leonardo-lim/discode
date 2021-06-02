@@ -59,16 +59,6 @@
                                     <li><a class="dropdown-item menu" href="/user">User</a></li>
                                 </ul>
                             </li>
-                            {{-- <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Rating
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Most Popular</a></li>
-                                    <li><a class="dropdown-item" href="#">Most Liked</a></li>
-                                    <li><a class="dropdown-item" href="#">Newest</a></li>
-                                </ul>
-                            </li> --}}
                         </ul>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item">
@@ -89,7 +79,7 @@
 
         <div class="row">
             @if (session('success'))
-                <div class="alert alert-success w-50 m-auto mt-3 text-center alert-dismissible fade show" role="alert">
+                <div class="alert alert-success w-50 m-auto my-3 text-center alert-dismissible fade show" role="alert">
                     {{ session('success') }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
@@ -111,18 +101,29 @@
         @elseif ($content === 'edit')
             @include('thread.edit')
             @yield('content')
+        @elseif ($content === 'editReply')
+            @include('reply.edit')
+            @yield('content')
+        @elseif ($content === 'detail')
+            @include('thread.detail')
+            @yield('content')
+            @include('reply.read')
+            @yield('read')
+            @include('reply.create')
+            @yield('create')
         @elseif ($content === 'tag')
             @include('tag')
             @yield('content')
         @elseif ($content === 'user')
             @include('user')
             @yield('content')
-        @elseif ($content === 'reply')
-            @include('thread.detail')
-            @yield('content')
         @endif
+        <button id="upButton" class="btn btn-primary mb-3" style="float: right"><i class="fa fa-arrow-up"></i></button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>

@@ -9,6 +9,7 @@
         
         <div class="row my-5">
             <div class="col text-center">
+                <h2 class="text-white w-25 rounded m-auto mb-2">{{$total}} threads</h2>
                 <a href="{{ url('/thread/create') }}" class="btn btn-primary w-25"><i class="fa fa-plus"></i> Add Thread</a>
             </div>
         </div>
@@ -16,11 +17,14 @@
         <div class="row" id="listThread">
             @foreach ($threads as $thread)
                 <div class="col-xl-4 col-md-6">
-                    <div class="card p-0 mb-5 border-0" style="height: 300px">
-                        <div class="bg-primary rounded-top" style="height: 10px"></div>
-                        <a href="{{ url('/thread/edit')  . '/' . $thread->id}}" class="btn btn-warning text-white" style="position: absolute; top: -10px; right: 28px"><i class="fa fa-edit"></i></a> &nbsp;
-                        <a href="" class="btn btn-danger" style="position: absolute; top: -10px; right: -10px"><i class="fa fa-trash"></i></a>
-                        <div class="card-header bg-white overflow-hidden" style="max-height: 35px">
+                    <div class="card bg-transparent text-white p-0 mb-5 border-0" style="height: 300px">
+                        <a href="/thread/{{$thread->id}}/edit" class="btn btn-warning text-white" style="position: absolute; top: -10px; right: 28px"><i class="fa fa-edit"></i></a>
+                        <form action="{{url('/thread') . '/' . $thread->id}}" method="POST" class="d-inline">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" class="btn btn-danger" style="position: absolute; top: -10px; right: -10px" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
+                        </form>
+                        <div class="card-header rounded-top overflow-hidden border-0" style="max-height: 35px">
                             @if (strlen($thread->title) > 30)
                                 {{ substr($thread->title, 0, 30) }}...
                             @else
@@ -30,10 +34,10 @@
                         <div class="card-body d-flex flex-column">
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="users overflow-hidden"><strong>User who make the question</strong></h5>
+                                    <h5 class="users overflow-hidden ms-1"><strong>{{$thread->user['name']}}</strong></h5>
                                     <p class="badge badge-dark bg-dark thread-time">
                                         <?php
-                                            $updatedDate = new DateTime($thread->updated_at);
+                                            $updatedDate = new DateTime($thread->created_at);
                                             $currentDate = new DateTime(Carbon\Carbon::now());
                                             $interval = $updatedDate->diff($currentDate);
 
@@ -64,11 +68,14 @@
                                             }
                                         ?>
                                     </p>
-                                    <p class="badge badge-dark bg-dark thread-time-detail">{{$thread->updated_at}}</p>
+                                    <p class="badge badge-dark bg-dark thread-time-detail">{{$thread->created_at}}</p>
+                                    @if ($thread->created_at != $thread->updated_at)
+                                        <span class="badge badge-dark bg-dark">Edited</span>
+                                    @endif
                                     <p class="questions">
                                         @if (strlen($thread->content) > 110)
                                             {{ substr($thread->content, 0, 110) }}
-                                            <a class="fs-6 text-decoration-none" href="{{ url('/thread/detail') }}">Read More</a>
+                                            <a class="fs-6 text-decoration-none" href="/thread/{{$thread->id}}">Read More</a>
                                         @else
                                             {{$thread->content}}
                                         @endif
@@ -84,7 +91,11 @@
                                     <button class="btn btn-danger w-100" title="Dislike"><i class="fa fa-thumbs-down" aria-hidden="true"></i> 1</button>
                                 </div>
                                 <div class="col-4 p-0">
-                                    <button class="btn btn-info text-white w-100" title="Comment" ><a href="{{url('thread/') . '/' . $thread->id}}"><i class="fa fa-comment" aria-hidden="true"></i>1</a></button>
+                                    @php($count = 0)
+                                    @foreach ($thread->reply as $reply)
+                                        @php($count++)
+                                    @endforeach
+                                    <a href="/thread/{{$thread->id}}" class="btn btn-info text-white w-100" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i> {{$count}}</a>
                                 </div>
                             </div>
                             <div class="tags">
