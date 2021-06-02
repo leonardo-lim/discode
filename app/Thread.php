@@ -22,4 +22,9 @@ class Thread extends Model
     {
         return $this->belongsToMany(Tag::class, 'tag_thread', 'thread_id', 'tag_id');
     }
+
+    public function tag()
+    {
+        return $this->belongsToMany(Tag::class, 'tag_thread', 'thread_id', 'tag_id');
+    }
 }

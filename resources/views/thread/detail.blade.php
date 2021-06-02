@@ -65,6 +65,20 @@
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col">
+                                <p>{{$thread->content}}</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                @foreach ($thread->tag as $tag)
+                                    <span class="badge badge-warning bg-warning text-primary p-2 mb-5">#{{$tag->name}}</span>
+                                @endforeach
+                            </div>
+                        </div>
+
                         <div class="row mt-auto m-0">
                             <div class="col-6 p-0">
                                 <button class="btn btn-primary w-100" title="Like"><i class="fa fa-thumbs-up" aria-hidden="true"></i> 1</button>
