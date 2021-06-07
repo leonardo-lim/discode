@@ -22,6 +22,19 @@
             </div>
             
             <div class="row">
+                <div id="tagDisplay" class="text-white"></div>
+            </div>
+
+            <div class="row">
+                <div class="input-group m-auto mb-3">
+                    <input type="text" class="form-control @error('tag') is-invalid @enderror" id="tagInput" name="tag" placeholder="Tag" value="{{old('title')}}">
+                    @error('tag')
+                        <div class="invalid-feedback bg-danger text-white rounded mt-2 p-2">{{$message}}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-6">
                     <a href="/thread" class="btn btn-info text-white d-block"><i class="fa fa-times"></i> Cancel</a>
                 </div>

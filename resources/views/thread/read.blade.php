@@ -33,7 +33,19 @@
                         </div>
                         <div class="card-body d-flex flex-column">
                             <div class="row">
-                                <div class="col">
+                                <div class="col-2">
+                                    @foreach ($profiles as $profile)
+                                        @if ($thread->user['id'] === $profile['user_id'])
+                                            @if (!$profile['photo_url'])
+                                                <img src="{{ asset('profile/default.png') }}" class="rounded-circle" width="50" height="50" alt="Profile Picture">
+                                            @else
+                                                <img src="{{ asset('profile/' . $profile['photo_url']) }}" class="rounded-circle" width="50" height="50" alt="Profile Picture">
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                </div>
+
+                                <div class="col-10">
                                     <h5 class="users overflow-hidden ms-1"><strong>{{$thread->user['name']}}</strong></h5>
                                     <p class="badge badge-dark bg-dark thread-time">
                                         <?php
@@ -72,15 +84,16 @@
                                     @if ($thread->created_at != $thread->updated_at)
                                         <span class="badge badge-dark bg-dark">Edited</span>
                                     @endif
-                                    <p class="questions">
-                                        @if (strlen($thread->content) > 110)
-                                            {{ substr($thread->content, 0, 110) }}
-                                            <a class="fs-6 text-decoration-none" href="/thread/{{$thread->id}}">Read More</a>
-                                        @else
-                                            {{$thread->content}}
-                                        @endif
-                                    </p>
                                 </div>
+
+                                <p class="questions">
+                                    @if (strlen($thread->content) > 110)
+                                        {{ substr($thread->content, 0, 110) }}
+                                        <a class="fs-6 text-decoration-none" href="/thread/{{$thread->id}}">Read More</a>
+                                    @else
+                                        {{$thread->content}}
+                                    @endif
+                                </p>
                             </div>
 
                             <div class="row mt-auto m-0">
@@ -93,12 +106,12 @@
                                 <div class="col-4 p-0">
                                     @php($count = 0)
                                     @foreach ($thread->reply as $reply)
-                                        @php($count++)
+                                        @if (!$reply->parent_id)
+                                            @php($count++)
+                                        @endif
                                     @endforeach
                                     <a href="/thread/{{$thread->id}}" class="btn btn-info text-white w-100" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i> {{$count}}</a>
                                 </div>
-                            </div>
-                            <div class="tags">
                             </div>
                         </div>
                     </div>

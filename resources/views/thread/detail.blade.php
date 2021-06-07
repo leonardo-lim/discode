@@ -9,7 +9,19 @@
                     </div>
                     <div class="card-body d-flex flex-column">
                         <div class="row">
-                            <div class="col">
+                            <div class="col-lg-1 col-2">
+                                @foreach ($profiles as $profile)
+                                    @if ($thread->user['id'] === $profile['user_id'])
+                                        @if (!$profile['photo_url'])
+                                            <img src="{{ asset('profile/default.png') }}" class="rounded-circle" width="50" height="50" alt="Profile Picture">
+                                        @else
+                                            <img src="{{ asset('profile/' . $profile['photo_url']) }}" class="rounded-circle" width="50" height="50" alt="Profile Picture">
+                                        @endif
+                                    @endif
+                                @endforeach
+                            </div>
+                            
+                            <div class="col-lg-11 col-10">
                                 <h5 class="users ms-1"><strong>{{$thread->user['name']}}</strong></h5>
                                 <p class="badge badge-dark bg-dark thread-time">
                                     <?php
@@ -48,20 +60,6 @@
                                 @if ($thread->created_at != $thread->updated_at)
                                     <span class="badge badge-dark bg-dark">Edited</span>
                                 @endif
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <p>{{$thread->content}}</p>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                @foreach ($thread->tag as $tag)
-                                    <span class="badge badge-warning bg-warning text-primary p-2 mb-5">#{{$tag->name}}</span>
-                                @endforeach
                             </div>
                         </div>
 

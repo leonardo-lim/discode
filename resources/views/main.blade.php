@@ -115,10 +115,14 @@
             @include('tag')
             @yield('content')
         @elseif ($content === 'user')
-            @include('user')
+            @include('user.read')
+            @yield('content')
+        @elseif ($content === 'userDetail')
+            @include('user.detail')
             @yield('content')
         @endif
-        <button id="upButton" class="btn btn-primary mb-3" style="float: right"><i class="fa fa-arrow-up"></i></button>
+        
+        <button id="upButton" class="btn btn-primary mb-3" style="position: fixed; bottom: 0; right: 20px; display: none"><i class="fa fa-arrow-up"></i></button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>

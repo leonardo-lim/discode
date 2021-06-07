@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'MainController@index');
 Route::get('/about', 'MainController@about');
 Route::get('/thread', 'ThreadController@index');
+Route::get('/user', 'UserController@index');
+
 Route::resource('thread', 'ThreadController');
 Route::post('/thread/{thread}', 'ReplyController@store')->name('reply.store');
 Route::post('/reply/{reply}', 'ReplyController@store2')->name('reply.store2');
-Route::resource('reply', 'ReplyController', ['only'=>['edit', 'update', 'destroy']]);
+Route::resource('reply', 'ReplyController', ['only' => ['edit', 'update', 'destroy']]);
+Route::resource('user', 'UserController');

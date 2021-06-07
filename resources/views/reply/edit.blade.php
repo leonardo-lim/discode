@@ -4,7 +4,7 @@
         <form action="{{route('reply.update',$reply->id)}}" method="POST">
             @method('put')
             @csrf
-            <div class="row">
+            <div class="row mt-5">
                 <div class="input-group m-auto mb-4">
                     <textarea class="form-control @error('content') is-invalid @enderror" name="content" placeholder="Edit Reply" rows="5">{{$reply->content}}</textarea>
                     @error('content')

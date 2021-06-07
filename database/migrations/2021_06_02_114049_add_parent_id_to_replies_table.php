@@ -14,7 +14,7 @@ class AddParentIdToRepliesTable extends Migration
     public function up()
     {
         Schema::table('replies', function (Blueprint $table) {
-            $table->integer('parent_id')->unsigned();
+            $table->unsignedBigInteger('parent_id')->nullable();
         });
     }
 

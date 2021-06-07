@@ -63,7 +63,7 @@ class ReplyController extends Controller
         $reply->thread_id = $request->thread_id;
         $reply->save();
 
-        return redirect(url('/thread') . '/' . $reply->thread_id)->with('success', 'A thread replied successfully.');
+        return redirect(url('/thread') . '/' . $reply->thread_id)->with('success', 'A reply replied successfully.');
     }
 
     /**
@@ -108,7 +108,7 @@ class ReplyController extends Controller
         $reply->updated_at = date('Y-m-d H:i:s');
         $reply->save();
 
-        return redirect(url('/thread')  . '/' . $reply->thread_id)->with('success', 'A Reply updated successfully.');
+        return redirect(url('/thread')  . '/' . $reply->thread_id)->with('success', 'A reply updated successfully.');
     }
 
     /**
@@ -122,6 +122,6 @@ class ReplyController extends Controller
         $reply = Reply::find($id);
         $reply->delete();
 
-        return back()->with('success', 'Reply has been deleted'); 
+        return back()->with('success', 'A reply deleted successfully.'); 
     }
 }

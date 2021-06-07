@@ -15,13 +15,13 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->integer('age');
-            $table->string('full_name');
-            $table->string('bio');
-            $table->string('gender');
-            $table->string('date_of_birth');
-            $table->string('region');
-            $table->string('photo_url');
+            $table->integer('age')->nullable();
+            $table->string('full_name')->nullable();
+            $table->string('bio')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('date_of_birth')->nullable();
+            $table->string('region')->nullable();
+            $table->string('photo_url')->nullable();
             $table->unsignedBigInteger("user_id");
         });
         Schema::table('profiles', function (Blueprint $table) {
