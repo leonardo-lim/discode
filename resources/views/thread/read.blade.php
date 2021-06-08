@@ -9,7 +9,11 @@
         
         <div class="row my-5">
             <div class="col text-center">
-                <h2 class="text-white w-25 rounded m-auto mb-2">{{$total}} threads</h2>
+                @if ($total > 1)
+                    <h2 class="text-white w-25 rounded m-auto mb-2">{{$total}} threads</h2>
+                @else
+                    <h2 class="text-white w-25 rounded m-auto mb-2">{{$total}} thread</h2>
+                @endif
                 <a href="{{ url('/thread/create') }}" class="btn btn-primary w-25"><i class="fa fa-plus"></i> Add Thread</a>
             </div>
         </div>
@@ -46,7 +50,7 @@
                                 </div>
 
                                 <div class="col-10">
-                                    <h5 class="users overflow-hidden ms-1"><strong>{{$thread->user['name']}}</strong></h5>
+                                    <a href="/user/{{$thread->user['id']}}" class="users overflow-hidden ms-1 text-white text-decoration-none d-block h5"><strong>{{$thread->user['name']}}</strong></a>
                                     <p class="badge badge-dark bg-dark thread-time">
                                         <?php
                                             $updatedDate = new DateTime($thread->created_at);

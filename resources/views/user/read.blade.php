@@ -2,8 +2,12 @@
     <div class="container">
         <div class="row my-5">
             <div class="col text-center">
-                <h2 class="text-white w-25 rounded m-auto mb-2">{{$total}} users</h2>
-                <a href="{{ url('/thread/create') }}" class="btn btn-primary w-25"><i class="fa fa-plus"></i> Add User</a>
+                @if ($total > 1)
+                    <h2 class="text-white w-25 rounded m-auto mb-2">{{$total}} threads</h2>
+                @else
+                    <h2 class="text-white w-25 rounded m-auto mb-2">{{$total}} thread</h2>
+                @endif
+                <a href="{{ url('/user/create') }}" class="btn btn-primary w-25"><i class="fa fa-plus"></i> Add User</a>
             </div>
         </div>
 
@@ -20,13 +24,13 @@
 
                         <div class="text-center card-box">
                             <div class="member-card pt-2 pb-2">
-                                <div class="thumb-lg member-thumb mx-auto">
+                                <div class="member-thumb mx-auto">
                                     @foreach ($profiles as $profile)
                                         @if ($user->id === $profile['user_id'])
                                             @if (!$profile['photo_url'])
-                                                <img src="{{ asset('profile/default.png') }}" class="rounded-circle img-thumbnail" width="200" height="200" alt="Profile Picture">
+                                                <img src="{{ asset('profile/default.png') }}" class="rounded-circle img-thumbnail" width="100" height="100" alt="Profile Picture">
                                             @else
-                                                <img src="{{ asset('profile/' . $profile['photo_url']) }}" class="rounded-circle img-thumbnail" width="200" height="200" alt="Profile Picture">
+                                                <img src="{{ asset('profile/' . $profile['photo_url']) }}" class="rounded-circle img-thumbnail" width="100" height="100" alt="Profile Picture">
                                             @endif
                                         @endif
                                     @endforeach
@@ -79,7 +83,7 @@
                                 <p class="badge badge-dark bg-dark thread-time-detail">{{$user->created_at}}</p>
 
                                 <div class="row">
-                                    <a href="/user/{{$user->id}}" class="btn btn-primary mt-2 btn-rounded">View More</a>
+                                    <a href="/user/{{$user->id}}" class="btn btn-primary mt-1 btn-rounded">View More</a>
                                 </div>
                             </div>
                         </div>

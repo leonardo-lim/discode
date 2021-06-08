@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Profile;
+use App\Tag;
 use App\Thread;
-use App\Reply;
 
-class UserController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +15,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('created_at', 'desc')->get();
-        $profiles = Profile::all();
-        $total = User::count();
-        $content = 'user';
-        return view('main', compact('users', 'profiles', 'total', 'content'));
+        $tags = Tag::orderBy('created_at', 'desc')->get();
+        $total = Tag::count();
+        $content = 'tag';
+        return view('main', compact('tags', 'total', 'content'));
     }
 
     /**
@@ -53,12 +50,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        $profiles = Profile::all();
-        $threads = Thread::all();
-        $replies = Reply::all();
-        $content = 'userDetail';
-        return view('main', compact('user', 'profiles', 'threads', 'replies', 'content'));
+        $tag = Tag::find($id);
+        $content = 'tagDetail';
+        return view('main', compact('tag', 'content'));
     }
 
     /**

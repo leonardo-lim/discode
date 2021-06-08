@@ -37,7 +37,7 @@
                                     </div>
                                     
                                     <div class="col-lg-8 col-7">
-                                        <h6 class="user ms-1">{{$reply->user['name']}}</h6>
+                                        <a href="/user/{{$reply->user['id']}}" class="users overflow-hidden ms-1 text-white text-decoration-none d-block h6"><strong>{{$reply->user['name']}}</strong></a>
                                         <p class="badge badge-dark bg-dark mb-2 thread-time">
                                             <?php
                                                 $updatedDate = new DateTime($reply->created_at);
@@ -133,64 +133,84 @@
 
                                     <hr>
                                     <div class="replyInReply" style="display: none">
-                                        @foreach ($replies as $r)
-                                            @if ($r->parent_id === $reply->id)
-                                                <div class="ms-3">
-                                                    <div class="user ms-1">{{$r->user['name']}}</div>
-                                                    <p class="badge badge-dark bg-dark mb-2 thread-time">
-                                                        <?php
-                                                            $updatedDate = new DateTime($r->created_at);
-                                                            $currentDate = new DateTime(Carbon\Carbon::now());
-                                                            $interval = $updatedDate->diff($currentDate);
-        
-                                                            if ($interval->y > 1) {
-                                                                echo $interval->y . " years ago";
-                                                            } else if ($interval->y === 1) {
-                                                                echo $interval->y . " year ago";
-                                                            } else if ($interval->m > 1) {
-                                                                echo $interval->m . " months ago";
-                                                            } else if ($interval->m === 1) {
-                                                                echo $interval->m . " month ago";
-                                                            } else if ($interval->d > 1) {
-                                                                echo $interval->d . " days ago";
-                                                            } else if ($interval->d === 1) {
-                                                                echo $interval->d . " day ago";
-                                                            } else if ($interval->h > 1) {
-                                                                echo $interval->h . " hours ago";
-                                                            } else if ($interval->h === 1) {
-                                                                echo $interval->h . " hour ago";
-                                                            } else if ($interval->i > 1) {
-                                                                echo $interval->i . " minutes ago";
-                                                            } else if ($interval->i === 1) {
-                                                                echo $interval->i . " minute ago";
-                                                            } else if ($interval->s > 1) {
-                                                                echo $interval->s . " seconds ago";
-                                                            } else {
-                                                                echo $interval->s . " second ago";
-                                                            }
-                                                        ?>
-                                                    </p>
-                                                    <p class="badge badge-dark bg-dark thread-time-detail">{{$r->created_at}}</p>
-                                                    @if ($r->created_at != $r->updated_at)
-                                                        <span class="badge badge-dark bg-dark">Edited</span>
-                                                    @endif
-                                                    <div class="reply bg-info rounded p-2 mb-2">
-                                                        <p class="m-0 text-white">{{$r->content}}</p>
+                                        <div class="row">
+                                            @foreach ($replies as $r)
+                                                @if ($r->parent_id === $reply->id)
+                                                    <div class="col-lg-1 col-2 ps-4">
+                                                        @foreach ($profiles as $profile)
+                                                            @if ($r->user['id'] === $profile['user_id'])
+                                                                @if (!$profile['photo_url'])
+                                                                    <img src="{{ asset('profile/default.png') }}" class="rounded-circle" width="50" height="50" alt="Profile Picture">
+                                                                @else
+                                                                    <img src="{{ asset('profile/' . $profile['photo_url']) }}" class="rounded-circle" width="50" height="50" alt="Profile Picture">
+                                                                @endif
+                                                            @endif
+                                                        @endforeach
                                                     </div>
-                        
-                                                    {{-- EDIT REPLY --}}
-                                                    <a href="/reply/{{$r->id}}/edit" class="btn btn-warning text-white"><i class="fa fa-edit"></i></a>
+
+                                                    <div class="col-lg-8 col-7">
+                                                        <a href="/user/{{$r->user['id']}}" class="users overflow-hidden ms-2 text-white text-decoration-none d-block h6"><strong>{{$r->user['name']}}</strong></a>
+                                                        <p class="badge badge-dark bg-dark ms-1 mb-2 thread-time">
+                                                            <?php
+                                                                $updatedDate = new DateTime($r->created_at);
+                                                                $currentDate = new DateTime(Carbon\Carbon::now());
+                                                                $interval = $updatedDate->diff($currentDate);
+            
+                                                                if ($interval->y > 1) {
+                                                                    echo $interval->y . " years ago";
+                                                                } else if ($interval->y === 1) {
+                                                                    echo $interval->y . " year ago";
+                                                                } else if ($interval->m > 1) {
+                                                                    echo $interval->m . " months ago";
+                                                                } else if ($interval->m === 1) {
+                                                                    echo $interval->m . " month ago";
+                                                                } else if ($interval->d > 1) {
+                                                                    echo $interval->d . " days ago";
+                                                                } else if ($interval->d === 1) {
+                                                                    echo $interval->d . " day ago";
+                                                                } else if ($interval->h > 1) {
+                                                                    echo $interval->h . " hours ago";
+                                                                } else if ($interval->h === 1) {
+                                                                    echo $interval->h . " hour ago";
+                                                                } else if ($interval->i > 1) {
+                                                                    echo $interval->i . " minutes ago";
+                                                                } else if ($interval->i === 1) {
+                                                                    echo $interval->i . " minute ago";
+                                                                } else if ($interval->s > 1) {
+                                                                    echo $interval->s . " seconds ago";
+                                                                } else {
+                                                                    echo $interval->s . " second ago";
+                                                                }
+                                                            ?>
+                                                        </p>
+                                                        <p class="badge badge-dark bg-dark thread-time-detail">{{$r->created_at}}</p>
+                                                        @if ($r->created_at != $r->updated_at)
+                                                            <span class="badge badge-dark bg-dark">Edited</span>
+                                                        @endif
+                                                    </div>
+
+                                                    <div class="col-3">
+                                                        {{-- DELETE REPLY --}}
+                                                        <form action="{{route('reply.destroy',$r->id)}}" method="POST" class="d-inline">
+                                                            @method('delete')
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-danger float-end" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
+                                                        </form>
+
+                                                        {{-- EDIT REPLY --}}
+                                                        <a href="/reply/{{$r->id}}/edit" class="btn btn-warning text-white float-end"><i class="fa fa-edit"></i></a>
+                                                    </div>
                                                     
-                                                    {{-- DELETE REPLY --}}
-                                                    <form action="{{route('reply.destroy',$r->id)}}" method="POST" class="d-inline">
-                                                        @method('delete')
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
-                                                    </form>
+                                                    <div class="col ps-4">
+                                                        <div class="reply bg-info rounded p-2 mb-2">
+                                                            <p class="m-0 text-white">{{$r->content}}</p>
+                                                        </div>
+                                                    </div>
+
                                                     <hr>
-                                                </div>
-                                            @endif
-                                        @endforeach
+                                                @endif
+                                            @endforeach
+                                        </div>
                                     </div>
                                 @endif
                             @endforeach

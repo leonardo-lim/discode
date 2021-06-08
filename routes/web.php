@@ -23,3 +23,4 @@ Route::post('/thread/{thread}', 'ReplyController@store')->name('reply.store');
 Route::post('/reply/{reply}', 'ReplyController@store2')->name('reply.store2');
 Route::resource('reply', 'ReplyController', ['only' => ['edit', 'update', 'destroy']]);
 Route::resource('user', 'UserController');
+Route::resource('tag', 'TagController');

@@ -22,7 +22,7 @@
                             </div>
                             
                             <div class="col-lg-11 col-10">
-                                <h5 class="users ms-1"><strong>{{$thread->user['name']}}</strong></h5>
+                                <a href="/user/{{$thread->user['id']}}" class="users overflow-hidden ms-1 text-white text-decoration-none d-block h5"><strong>{{$thread->user['name']}}</strong></a>
                                 <p class="badge badge-dark bg-dark thread-time">
                                     <?php
                                         $updatedDate = new DateTime($thread->created_at);
