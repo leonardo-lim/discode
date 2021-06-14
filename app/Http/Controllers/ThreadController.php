@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Thread;
 use App\Reply;
+use App\Profile;
+use App\Tag;
 
 class ThreadController extends Controller
 {
@@ -15,10 +17,11 @@ class ThreadController extends Controller
      */
     public function index()
     {
-        $threads = Thread::with('user')->orderBy('updated_at', 'desc')->get();
+        $threads = Thread::with('user')->orderBy('created_at', 'desc')->get();
+        $profiles = Profile::all();
         $total = Thread::count();
         $content = 'thread';
-        return view('main', compact('threads', 'total', 'content'));
+        return view('main', compact('threads', 'profiles', 'total', 'content'));
     }
 
     /**
@@ -29,7 +32,8 @@ class ThreadController extends Controller
     public function create()
     {
         $content = 'create';
-        return view('main', compact('content'));
+        $tags = Tag::all();
+        return view('main', compact('content', 'tags'));
     }
 
     /**
@@ -49,7 +53,36 @@ class ThreadController extends Controller
         $thread->title = $request->title;
         $thread->content = $request->content;
         $thread->user_id = 1;
+        // dd($thread);
+        // $thread->tag()->attach($thread->id);
+
+        // $tag = new Tag;
+        // $text = $request->tag;
+        // $len = strlen($text);
+        // $tags = array();
+        // $temp = '';
+
+        // for ($i = 0; $i < $len; $i++) {
+        //     if ($i > 0 && $text[$i] === ' ' && $text[$i - 1] != ' ') {
+        //         array_push($tags, $temp);
+        //         $temp = '';
+        //     } else if ($text[$i] != ' ') {
+        //         $temp .= $text[$i];
+        //     }
+        // }
+
+        // if ($temp != '') array_push($tags, $temp);
+
+        // $totalTag = count($tags);
+
+        // for ($i = 0; $i < $totalTag; $i++) {
+        //     $tag->name = $tags[$i];
+        // }
+
+        // $tag->save();
+        // $thread->tag()->sync($tags);
         $thread->save();
+        $thread->tag()->attach($request->tag);
 
         return redirect(url('/thread'))->with('success', 'A thread added successfully.');
     }
@@ -63,12 +96,12 @@ class ThreadController extends Controller
     public function show($id)
     {
         $thread = Thread::find($id);
+        // dd($thread);
+        $profiles = Profile::all();
+        $replies = Reply::with('user')->orderBy('created_at', 'desc')->get();
         $content = 'detail';
-        $replies = Reply::with('user')->orderBy('updated_at', 'desc')->get();
-        // $users = Reply::with('user')->get();
-        // $dataUser = User::with('thread')->orderBy('updated_at', 'desc')->where('id', $id)->get();
-        // dd($dataReply);
-        return view('main', compact('thread', 'replies', 'content'));
+        
+        return view('main', compact('thread', 'profiles', 'replies', 'content'));
     }
 
     /**

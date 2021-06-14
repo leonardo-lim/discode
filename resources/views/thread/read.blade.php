@@ -9,7 +9,11 @@
         
         <div class="row my-5">
             <div class="col text-center">
-                <h2 class="text-white w-25 rounded m-auto mb-2">{{$total}} threads</h2>
+                @if ($total > 1)
+                    <h2 class="text-white w-25 rounded m-auto mb-2">{{$total}} threads</h2>
+                @else
+                    <h2 class="text-white w-25 rounded m-auto mb-2">{{$total}} thread</h2>
+                @endif
                 <a href="{{ url('/thread/create') }}" class="btn btn-primary w-25"><i class="fa fa-plus"></i> Add Thread</a>
             </div>
         </div>
@@ -33,8 +37,20 @@
                         </div>
                         <div class="card-body d-flex flex-column">
                             <div class="row">
-                                <div class="col">
-                                    <h5 class="users overflow-hidden ms-1"><strong>{{$thread->user['name']}}</strong></h5>
+                                <div class="col-2">
+                                    @foreach ($profiles as $profile)
+                                        @if ($thread->user['id'] === $profile['user_id'])
+                                            @if (!$profile['photo_url'])
+                                                <img src="{{ asset('profile/default.png') }}" class="rounded-circle" width="50" height="50" alt="Profile Picture">
+                                            @else
+                                                <img src="{{ asset('profile/' . $profile['photo_url']) }}" class="rounded-circle" width="50" height="50" alt="Profile Picture">
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                </div>
+
+                                <div class="col-10">
+                                    <a href="/user/{{$thread->user['id']}}" class="users overflow-hidden ms-1 text-white text-decoration-none d-block h5"><strong>{{$thread->user['name']}}</strong></a>
                                     <p class="badge badge-dark bg-dark thread-time">
                                         <?php
                                             $updatedDate = new DateTime($thread->created_at);
@@ -72,15 +88,16 @@
                                     @if ($thread->created_at != $thread->updated_at)
                                         <span class="badge badge-dark bg-dark">Edited</span>
                                     @endif
-                                    <p class="questions">
-                                        @if (strlen($thread->content) > 110)
-                                            {{ substr($thread->content, 0, 110) }}
-                                            <a class="fs-6 text-decoration-none" href="/thread/{{$thread->id}}">Read More</a>
-                                        @else
-                                            {{$thread->content}}
-                                        @endif
-                                    </p>
                                 </div>
+
+                                <p class="questions">
+                                    @if (strlen($thread->content) > 110)
+                                        {{ substr($thread->content, 0, 110) }}
+                                        <a class="fs-6 text-decoration-none" href="/thread/{{$thread->id}}">Read More</a>
+                                    @else
+                                        {{$thread->content}}
+                                    @endif
+                                </p>
                             </div>
 
                             <div class="row mt-auto m-0">
@@ -93,12 +110,12 @@
                                 <div class="col-4 p-0">
                                     @php($count = 0)
                                     @foreach ($thread->reply as $reply)
-                                        @php($count++)
+                                        @if (!$reply->parent_id)
+                                            @php($count++)
+                                        @endif
                                     @endforeach
                                     <a href="/thread/{{$thread->id}}" class="btn btn-info text-white w-100" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i> {{$count}}</a>
                                 </div>
-                            </div>
-                            <div class="tags">
                             </div>
                         </div>
                     </div>

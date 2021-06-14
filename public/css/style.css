@@ -136,7 +136,7 @@ video {
     }
 }
 
-/* Read */
+/* Thread, Reply Read */
 .card {
     box-shadow: rgba(0, 225, 255, 0.5) 0px 4px 16px,
         rgba(0, 255, 255, 0.5) 0px 8px 32px;
@@ -200,7 +200,7 @@ video {
         rgba(0, 255, 255, 0.3) 0px 8px 32px;
 }
 
-/* Create & Edit */
+/* Thread, Reply Create & Edit */
 #addThread input,
 #addThread textarea,
 #editThread input,
@@ -208,7 +208,11 @@ video {
 #addReply input,
 #addReply textarea,
 #editReply input,
-#editReply textarea {
+#editReply textarea,
+#editUser input,
+#editUser textarea,
+#addTag input,
+#editTag input {
     background-color: transparent;
     color: white;
 }
@@ -239,7 +243,32 @@ video {
     color: #eeeeee !important;
 }
 
-/* Detail */
+/* Thread, Reply Detail */
 .card .bg-info {
     background-color: #005792 !important;
+}
+
+/* User Read */
+.card-box {
+    padding: 20px;
+    border-radius: 3px;
+    margin-bottom: 30px;
+}
+
+.img-thumbnail {
+    padding: 0.25rem;
+    background-color: black !important;
+    border: 2px solid black !important;
+    border-radius: 0.25rem;
+    max-width: 100%;
+    height: auto;
+}
+
+.btn-rounded {
+    border-radius: 2em;
+}
+
+.btn-tag {
+    text-decoration: none;
+    color: white;
 }

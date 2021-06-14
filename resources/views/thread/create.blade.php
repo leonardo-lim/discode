@@ -22,6 +22,21 @@
             </div>
             
             <div class="row">
+                <div id="tagDisplay" class="text-white"></div>
+            </div>
+
+            <div class="row">
+                <div class="input-group m-auto mb-3">
+                    {{-- Nitip le UI nya --}}
+                    <select class="form-control" multiple="" name="tag[]" id="tagInput">
+                        @foreach ($tags as $tag)
+                            <option value="{{$tag->id}}">{{$tag->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-6">
                     <a href="/thread" class="btn btn-info text-white d-block"><i class="fa fa-times"></i> Cancel</a>
                 </div>

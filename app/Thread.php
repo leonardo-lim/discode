@@ -15,16 +15,12 @@ class Thread extends Model
 
     public function reply()
     {
-        return $this->hasMany(Reply::class, 'thread_id', 'id')->whereNull('parent_id');
+        return $this->hasMany(Reply::class, 'thread_id', 'id');
     }
 
     public function tag()
     {
-        return $this->belongsToMany(Tag::class, 'tag_thread', 'thread_id', 'tag_id');
-    }
-
-    public function tag()
-    {
-        return $this->belongsToMany(Tag::class, 'tag_thread', 'thread_id', 'tag_id');
+        // return $this->belongsToMany(Tag::class, 'tag_thread', 'thread_id', 'tag_id');
+        return $this->belongsToMany('App\Tag');
     }
 }
