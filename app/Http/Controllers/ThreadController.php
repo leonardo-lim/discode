@@ -53,6 +53,7 @@ class ThreadController extends Controller
         $thread->title = $request->title;
         $thread->content = $request->content;
         $thread->user_id = 1;
+<<<<<<< HEAD
         // dd($thread);
         // $thread->tag()->attach($thread->id);
 
@@ -72,6 +73,25 @@ class ThreadController extends Controller
         // }
 
         // if ($temp != '') array_push($tags, $temp);
+=======
+        
+        $tag = new Tag;
+        $text = $request->tag;
+        $len = strlen($text);
+        $tags = array();
+        $temp = '';
+
+        for ($i = 0; $i < $len; $i++) {
+            if ($i > 0 && $text[$i] === ' ' && $text[$i - 1] != ' ') {
+                array_push($tags, $temp);
+                $temp = '';
+            } else if ($text[$i] != ' ') {
+                $temp .= $text[$i];
+            }
+        }
+
+        if ($temp != '') array_push($tags, $temp);
+>>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
 
         // $totalTag = count($tags);
 
@@ -80,7 +100,11 @@ class ThreadController extends Controller
         // }
 
         // $tag->save();
+<<<<<<< HEAD
         // $thread->tag()->sync($tags);
+=======
+        $thread->tag()->sync($tags);
+>>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
         $thread->save();
         $thread->tag()->attach($request->tag);
 
@@ -96,7 +120,10 @@ class ThreadController extends Controller
     public function show($id)
     {
         $thread = Thread::find($id);
+<<<<<<< HEAD
         // dd($thread);
+=======
+>>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
         $profiles = Profile::all();
         $replies = Reply::with('user')->orderBy('created_at', 'desc')->get();
         $content = 'detail';

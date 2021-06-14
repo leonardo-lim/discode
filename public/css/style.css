@@ -256,19 +256,30 @@ video {
 }
 
 .img-thumbnail {
+<<<<<<< HEAD
     padding: 0.25rem;
     background-color: black !important;
     border: 2px solid black !important;
     border-radius: 0.25rem;
+=======
+    padding: .25rem;
+    background-color: black !important;
+    border: 2px solid black !important;
+    border-radius: .25rem;
+>>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
     max-width: 100%;
     height: auto;
 }
 
 .btn-rounded {
     border-radius: 2em;
+<<<<<<< HEAD
 }
 
 .btn-tag {
     text-decoration: none;
     color: white;
 }
+=======
+}
+>>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42

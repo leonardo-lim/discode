@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Tag;
 use App\Thread;
+<<<<<<< HEAD
 use App\Reply;
 use App\Profile;
+=======
+>>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
 
 class TagController extends Controller
 {
@@ -30,9 +33,13 @@ class TagController extends Controller
      */
     public function create()
     {
+<<<<<<< HEAD
         $content = 'createTag';
         $tags = Tag::all();
         return view('main', compact('content', 'tags'));
+=======
+        //
+>>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
     }
 
     /**
@@ -43,6 +50,7 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
         $request->validate([
             'name' => 'required | max:255'
         ]);
@@ -50,6 +58,9 @@ class TagController extends Controller
         $tag->name = $request->name;
         $tag->save();
         return redirect(url('/tag'))->with('success', 'A tag added successfully.');
+=======
+        //
+>>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
     }
 
     /**
@@ -61,6 +72,7 @@ class TagController extends Controller
     public function show($id)
     {
         $tag = Tag::find($id);
+<<<<<<< HEAD
         $threads = Thread::all();
         // dd($threads);
         $total = Thread::count();
@@ -68,6 +80,10 @@ class TagController extends Controller
         $replies = Reply::with('user')->orderBy('created_at', 'desc')->get();
         $content = 'tagDetail';
         return view('main', compact('tag', 'threads', 'total', 'profiles', 'replies', 'content'));
+=======
+        $content = 'tagDetail';
+        return view('main', compact('tag', 'content'));
+>>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
     }
 
     /**
@@ -78,9 +94,13 @@ class TagController extends Controller
      */
     public function edit($id)
     {
+<<<<<<< HEAD
         $tag = Tag::find($id);
         $content = 'editTag';
         return view('main', compact('tag', 'content'));
+=======
+        //
+>>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
     }
 
     /**
@@ -92,6 +112,7 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
+<<<<<<< HEAD
         $request->validate([
             'name' => 'required | max:255'
         ]);
@@ -102,6 +123,9 @@ class TagController extends Controller
         $tag->save();
 
         return redirect(url('/tag'))->with('success', 'A tag updated successfully.');
+=======
+        //
+>>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
     }
 
     /**
@@ -112,10 +136,14 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
+<<<<<<< HEAD
         $tag = Tag::find($id);
         $tag->thread()->detach();
         $tag->delete();
 
         return back()->with('success', 'A tag deleted successfully.');
+=======
+        //
+>>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
     }
 }

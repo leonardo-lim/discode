@@ -26,6 +26,7 @@
                             <div class="member-card pt-2 pb-2">
                                 <div>
                                     <h4 class="mt-2">
+<<<<<<< HEAD
                                         <a href="/tag/{{$tag->id}}" class="btn-tag">
                                             @if (strlen($tag->name) > 20)
                                                 #{{ substr($tag->name, 0, 20) }}...
@@ -33,6 +34,13 @@
                                                 #{{$tag->name}}
                                             @endif
                                         </a>
+=======
+                                        @if (strlen($tag->name) > 20)
+                                            #{{ substr($tag->name, 0, 20) }}...
+                                        @else
+                                            #{{$tag->name}}
+                                        @endif
+>>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
                                     </h4>
                                 </div>
                             </div>

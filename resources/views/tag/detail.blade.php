@@ -1,4 +1,5 @@
 @section('content')
+<<<<<<< HEAD
     <div class="container">
         
         <div class="row my-5">
@@ -116,4 +117,7 @@
             @endforeach
         </div>
     </div>
+=======
+    
+>>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
 @endsection

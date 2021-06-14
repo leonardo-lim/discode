@@ -116,21 +116,27 @@
             @yield('content')
         @elseif ($content === 'tagDetail')
             @include('tag.detail')
+<<<<<<< HEAD
             @yield('content')
         @elseif ($content === 'createTag')
             @include('tag.create')
             @yield('content')
         @elseif ($content === 'editTag')
             @include('tag.edit')
+=======
+>>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
             @yield('content')
         @elseif ($content === 'user')
             @include('user.read')
             @yield('content')
         @elseif ($content === 'userDetail')
             @include('user.detail')
+<<<<<<< HEAD
             @yield('content')
         @elseif ($content === 'editUser')
             @include('user.edit')
+=======
+>>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
             @yield('content')
         @endif
         

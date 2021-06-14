@@ -3,10 +3,18 @@
         <div class="row my-5">
             <div class="col text-center">
                 @if ($total > 1)
+<<<<<<< HEAD
                     <h2 class="text-white w-25 rounded m-auto mb-2">{{$total}} users</h2>
                 @else
                     <h2 class="text-white w-25 rounded m-auto mb-2">{{$total}} user</h2>
                 @endif
+=======
+                    <h2 class="text-white w-25 rounded m-auto mb-2">{{$total}} threads</h2>
+                @else
+                    <h2 class="text-white w-25 rounded m-auto mb-2">{{$total}} thread</h2>
+                @endif
+                <a href="{{ url('/user/create') }}" class="btn btn-primary w-25"><i class="fa fa-plus"></i> Add User</a>
+>>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
             </div>
         </div>
 
@@ -14,6 +22,16 @@
             @foreach ($users as $user)
                 <div class="col-xl-4 col-md-6">
                     <div class="card bg-transparent text-white p-0 mb-5 border-0" style="height: 300px">
+<<<<<<< HEAD
+=======
+                        <a href="/user/{{$user->id}}/edit" class="btn btn-warning text-white" style="position: absolute; top: -10px; right: 28px"><i class="fa fa-edit"></i></a>
+                        <form action="{{url('/user') . '/' . $user->id}}" method="POST" class="d-inline">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" class="btn btn-danger" style="position: absolute; top: -10px; right: -10px" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
+                        </form>
+
+>>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
                         <div class="text-center card-box">
                             <div class="member-card pt-2 pb-2">
                                 <div class="member-thumb mx-auto">

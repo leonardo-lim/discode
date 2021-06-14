@@ -27,12 +27,19 @@
 
             <div class="row">
                 <div class="input-group m-auto mb-3">
+<<<<<<< HEAD
                     {{-- Nitip le UI nya --}}
                     <select class="form-control" multiple="" name="tag[]" id="tagInput">
                         @foreach ($tags as $tag)
                             <option value="{{$tag->id}}">{{$tag->name}}</option>
                         @endforeach
                     </select>
+=======
+                    <input type="text" class="form-control @error('tag') is-invalid @enderror" id="tagInput" name="tag" placeholder="Tag" value="{{old('title')}}">
+                    @error('tag')
+                        <div class="invalid-feedback bg-danger text-white rounded mt-2 p-2">{{$message}}</div>
+                    @enderror
+>>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
                 </div>
             </div>
 
