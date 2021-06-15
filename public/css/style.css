@@ -12,6 +12,14 @@
     border-radius: 10px;
 }
 
+.bg-purple {
+    background-color: purple;
+}
+
+.bg-orange {
+    background-color: orangered;
+}
+
 .logo {
     margin-top: 30px;
 }
@@ -110,11 +118,21 @@ nav a:hover {
     text-align: center;
 }
 
+.wrapper {
+    position: relative;
+    height: 100vh;
+}
+
 .jumbotron {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.footer {
+    box-shadow: rgba(0, 225, 255, 0.5) 0px 4px 16px,
+        rgba(0, 255, 255, 0.5) 0px 8px 32px;
 }
 
 video {
@@ -243,6 +261,22 @@ video {
     color: #eeeeee !important;
 }
 
+.select2-selection {
+    margin-bottom: 20px !important;
+    background-color: transparent !important;
+    color: white !important;
+}
+
+.select2-search__field {
+    cursor: pointer !important;
+}
+
+.select2-selection__choice {
+    background-color: #ffc107 !important;
+    color: #007bff !important;
+    border: none !important;
+}
+
 /* Thread, Reply Detail */
 .card .bg-info {
     background-color: #005792 !important;
@@ -256,30 +290,19 @@ video {
 }
 
 .img-thumbnail {
-<<<<<<< HEAD
     padding: 0.25rem;
     background-color: black !important;
     border: 2px solid black !important;
     border-radius: 0.25rem;
-=======
-    padding: .25rem;
-    background-color: black !important;
-    border: 2px solid black !important;
-    border-radius: .25rem;
->>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
     max-width: 100%;
     height: auto;
 }
 
 .btn-rounded {
     border-radius: 2em;
-<<<<<<< HEAD
 }
 
 .btn-tag {
     text-decoration: none;
     color: white;
 }
-=======
-}
->>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42

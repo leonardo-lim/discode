@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
 </head>
 <body>
     {{-- Background --}}
@@ -31,41 +32,41 @@
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
                                 @if ($content === 'home')
-                                    <a class="nav-link menu active" href="/">Home</a>
+                                    <a class="nav-link menu active" href="/"><i class="fa fa-home"></i> Home</a>
                                 @else
-                                    <a class="nav-link menu" href="/">Home</a>
+                                    <a class="nav-link menu" href="/"><i class="fa fa-home"></i> Home</a>
                                 @endif
                             </li>
                             <li class="nav-item">
                                 @if ($content === 'about')
-                                    <a class="nav-link menu active" href="/about">About</a>
+                                    <a class="nav-link menu active" href="/about"><i class="fa fa-info-circle"></i> About</a>
                                 @else
-                                    <a class="nav-link menu" href="/about">About</a>
+                                    <a class="nav-link menu" href="/about"><i class="fa fa-info-circle"></i> About</a>
                                 @endif
                             </li>
                             <li class="nav-item dropdown">
-                                @if ($content === 'thread')
-                                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Thread</a>
-                                @elseif ($content === 'tag')
-                                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tag</a>
-                                @elseif ($content === 'user')
-                                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">User</a>
+                                @if ($content === 'thread' || $content === 'create' || $content === 'edit' || $content === 'editReply' || $content === 'detail')
+                                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-sticky-note"></i> Thread</a>
+                                @elseif ($content === 'tag' || $content === 'tagDetail' || $content === 'createTag' || $content === 'editTag')
+                                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-tag"></i> Tag</a>
+                                @elseif ($content === 'user' || $content === 'userDetail' || $content === 'editUser')
+                                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-user"></i> User</a>
                                 @else
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Forum</a>
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-users"></i> Forum</a>
                                 @endif
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item menu" href="/thread">Thread</a></li>
-                                    <li><a class="dropdown-item menu" href="/tag">Tag</a></li>
-                                    <li><a class="dropdown-item menu" href="/user">User</a></li>
+                                    <li><a class="dropdown-item menu" href="/thread"><i class="fa fa-sticky-note"></i> Thread</a></li>
+                                    <li><a class="dropdown-item menu" href="/tag"><i class="fa fa-tag"></i> Tag</a></li>
+                                    <li><a class="dropdown-item menu" href="/user"><i class="fa fa-user"></i> User</a></li>
                                 </ul>
                             </li>
                         </ul>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link btn btn-info" href="#">Register</a>
+                                <a class="nav-link btn btn-info" href="#"><i class="fa fa-user-plus"></i> Register</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link btn btn-primary" href="#">Login</a>
+                                <a class="nav-link btn btn-primary" href="#"><i class="fa fa-sign-in"></i> Login</a>
                             </li>
                         </ul>
                         {{-- <form class="d-flex">
@@ -116,27 +117,21 @@
             @yield('content')
         @elseif ($content === 'tagDetail')
             @include('tag.detail')
-<<<<<<< HEAD
             @yield('content')
         @elseif ($content === 'createTag')
             @include('tag.create')
             @yield('content')
         @elseif ($content === 'editTag')
             @include('tag.edit')
-=======
->>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
             @yield('content')
         @elseif ($content === 'user')
             @include('user.read')
             @yield('content')
         @elseif ($content === 'userDetail')
             @include('user.detail')
-<<<<<<< HEAD
             @yield('content')
         @elseif ($content === 'editUser')
             @include('user.edit')
-=======
->>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
             @yield('content')
         @endif
         
@@ -146,6 +141,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
     <script src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>

@@ -31,11 +31,7 @@
                                             <h5 class="text-info mt-2">{{$profile->job}}</h5>
                                             <hr>
                                             <p class="mb-2"><i class="fa fa-birthday-cake"></i> {{$profile->date_of_birth}}</p>
-                                            <p class="mb-2"><i class="fa fa-location-arrow"></i> {{$profile->region}}</p>
-<<<<<<< HEAD
-=======
-
->>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
+                                            <p class="mb-2"><i class="fa fa-map-pin"></i> {{$profile->region}}</p>
                                             <p class="badge badge-dark bg-dark mb-2 thread-time">
                                                 <?php
                                                     $updatedDate = new DateTime($user->created_at);
@@ -71,7 +67,6 @@
                                             </p>
                                             <p class="badge badge-dark bg-dark mb-2 thread-time-detail">{{$user->created_at}}</p>
                                             <hr>
-<<<<<<< HEAD
                                             <div class="row">
                                                 <div class="col">
                                                     <div class="text-center">
@@ -79,16 +74,6 @@
                                                         <hr>
                                                     </div>
                                                 </div>
-=======
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="text-center">
-                                                <p><i class="fa fa-info-circle"></i> {{$profile->bio}}</p>
-                                                <hr>
->>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
                                             </div>
                                         </div>
                                     </div>
@@ -152,7 +137,6 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
         <div class="row my-3">
             <div class="col-xl-8 col-md-8 col-sm-10 m-auto">
                 <div class="row">
@@ -175,14 +159,11 @@
                 </div>
             </div>
         </div>
-=======
-
->>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
         <div class="row my-3">
             <div class="col-xl-8 col-md-8 col-sm-10 m-auto">
                 <div class="row">
                     <div class="col">
-                        <a href="/user" class="btn btn-info text-white w-100"><i class="fa fa-arrow-left"></i> Back</a>
+                        <a href="/user" class="btn btn-info bg-transparent text-white w-100"><i class="fa fa-arrow-left"></i> Back</a>
                     </div>
                 </div>
             </div>

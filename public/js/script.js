@@ -6,6 +6,7 @@ const hideReplyButton = document.getElementsByClassName('hideReply');
 const replyInReply = document.getElementsByClassName('replyInReply');
 const tagInput = document.querySelector('#tagInput');
 const tagDisplay = document.querySelector('#tagDisplay');
+const copyright = document.querySelector('#copyright');
 let totalReplyInReply = replyInReply.length;
 
 window.onscroll = () => {
@@ -71,3 +72,13 @@ if (tagInput) {
         }
     });
 }
+
+copyright.innerHTML = `Copyright ${new Date().getFullYear()} Discode. All rights reserved.`;
+
+$(document).ready(function(){
+    $(".mul-select").select2({
+        placeholder: "Tag",
+        tags: true,
+        tokenSeparators: ['/',',',';'," "] 
+    });
+})

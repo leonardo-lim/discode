@@ -72,7 +72,7 @@
                         <div class="row">
                             <div class="col">
                                 @foreach ($thread->tag as $tag)
-                                    <span class="badge badge-warning bg-warning text-primary p-2 mb-5">#{{$tag->name}}</span>
+                                    <a href="/tag/{{$tag->id}}" class="badge badge-warning bg-warning text-primary text-decoration-none p-2 mb-5">#{{$tag->name}}</a>
                                 @endforeach
                             </div>
                         </div>

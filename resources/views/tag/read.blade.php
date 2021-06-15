@@ -3,9 +3,9 @@
         <div class="row my-5">
             <div class="col text-center">
                 @if ($total > 1)
-                    <h2 class="text-white w-25 rounded m-auto mb-2">{{$total}} tags</h2>
+                    <h2 class="text-white w-25 rounded m-auto mb-2"><i class="fa fa-tags"></i> {{$total}} tags</h2>
                 @else
-                    <h2 class="text-white w-25 rounded m-auto mb-2">{{$total}} tag</h2>
+                    <h2 class="text-white w-25 rounded m-auto mb-2"><i class="fa fa-tags"></i> {{$total}} tag</h2>
                 @endif
                 <a href="{{ url('/tag/create') }}" class="btn btn-primary w-25"><i class="fa fa-plus"></i> Add Tag</a>
             </div>
@@ -26,7 +26,6 @@
                             <div class="member-card pt-2 pb-2">
                                 <div>
                                     <h4 class="mt-2">
-<<<<<<< HEAD
                                         <a href="/tag/{{$tag->id}}" class="btn-tag">
                                             @if (strlen($tag->name) > 20)
                                                 #{{ substr($tag->name, 0, 20) }}...
@@ -34,13 +33,6 @@
                                                 #{{$tag->name}}
                                             @endif
                                         </a>
-=======
-                                        @if (strlen($tag->name) > 20)
-                                            #{{ substr($tag->name, 0, 20) }}...
-                                        @else
-                                            #{{$tag->name}}
-                                        @endif
->>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
                                     </h4>
                                 </div>
                             </div>

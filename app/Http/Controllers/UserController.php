@@ -69,14 +69,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-<<<<<<< HEAD
         $user = User::find($id);
         $profiles = Profile::all();
         $content = 'editUser';
         return view('main', compact('user', 'profiles', 'content'));
-=======
-        //
->>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
     }
 
     /**
@@ -88,9 +84,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-<<<<<<< HEAD
         $request->validate([
-            'Fullname' => 'required | max:255',
+            'full_name' => 'required | max:255',
             'job' => 'required | max:255',
             'gender' => 'required | max:255',
             'date_of_birth' => 'required | max:255',
@@ -99,8 +94,7 @@ class UserController extends Controller
         ]);
 
         $profile = Profile::find($id);
-        // dd($profile);
-        $profile->full_name = $request->Fullname;
+        $profile->full_name = $request->full_name;
         $profile->job = $request->job;
         $profile->gender = $request->gender;
         $profile->date_of_birth = $request->date_of_birth;
@@ -109,9 +103,6 @@ class UserController extends Controller
         $profile->save();
 
         return redirect(url('/user')  . '/' . $profile->user_id)->with('success', 'Your account updated successfully.');
-=======
-        //
->>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
     }
 
     /**
@@ -122,13 +113,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-<<<<<<< HEAD
         $user = User::find($id);
         $user->delete();
 
         return redirect(url('/user'))->with('success', 'Your account deleted successfully.');
-=======
-        //
->>>>>>> e6eb6a2fcb2dd4d06ba3ef10f0107a87c994fb42
     }
 }

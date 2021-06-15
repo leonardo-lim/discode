@@ -10,9 +10,9 @@
         <div class="row my-5">
             <div class="col text-center">
                 @if ($total > 1)
-                    <h2 class="text-white w-25 rounded m-auto mb-2">{{$total}} threads</h2>
+                    <h2 class="text-white w-25 rounded m-auto mb-2"><i class="fa fa-sticky-note"></i> {{$total}} threads</h2>
                 @else
-                    <h2 class="text-white w-25 rounded m-auto mb-2">{{$total}} thread</h2>
+                    <h2 class="text-white w-25 rounded m-auto mb-2"><i class="fa fa-sticky-note"></i> {{$total}} thread</h2>
                 @endif
                 <a href="{{ url('/thread/create') }}" class="btn btn-primary w-25"><i class="fa fa-plus"></i> Add Thread</a>
             </div>
