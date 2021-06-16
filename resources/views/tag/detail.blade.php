@@ -12,10 +12,10 @@
                 @endforeach
 
                 @if ($count > 1)
-                    <h2 class="text-white w-25 rounded m-auto mb-2">{{$count}} threads</h2>
+                    <h2 class="text-white w-25 rounded m-auto mb-2"><i class="fa fa-sticky-note"></i> {{$count}} threads</h2>
                     <span class="badge badge-warning bg-warning text-primary fs-3">#{{$tag->name}}</span>
                 @else
-                    <h2 class="text-white w-25 rounded m-auto mb-2">{{$count}} thread</h2>
+                    <h2 class="text-white w-25 rounded m-auto mb-2"><i class="fa fa-sticky-note"></i> {{$count}} thread</h2>
                     <span class="badge badge-warning bg-warning text-primary fs-3">#{{$tag->name}}</span>
                 @endif
             </div>

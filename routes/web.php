@@ -19,6 +19,7 @@ Route::get('/thread', 'ThreadController@index');
 Route::get('/user', 'UserController@index');
 
 Route::resource('thread', 'ThreadController');
+Route::patch('thread/{thread}', 'ThreadController@lock')->name('thread.lock');
 Route::post('/thread/{thread}', 'ReplyController@store')->name('reply.store');
 Route::post('/reply/{reply}', 'ReplyController@store2')->name('reply.store2');
 Route::resource('reply', 'ReplyController', ['only' => ['edit', 'update', 'destroy']]);

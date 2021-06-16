@@ -18,6 +18,7 @@ class CreateThreadsTable extends Migration
             $table->string('title');
             $table->string('content');
             $table->unsignedBigInteger('user_id');
+            $table->boolean('is_locked')->default(0);
             $table->timestamps();
         });
         Schema::table('threads', function (Blueprint $table) {

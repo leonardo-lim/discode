@@ -3,7 +3,7 @@
         <div class="row my-3">
             <div class="col text-center">
                 <a href="" class="thread-tab"><i class="fa fa-fire"></i> Trending</a>
-                <a href="" class="mx-3 thread-tab active"><i class="fa fa-star"></i> Latest</a>
+                <a href="" class="mx-3 thread-tab active"><i class="fa fa-refresh"></i> Latest</a>
             </div>
         </div>
         
@@ -33,6 +33,12 @@
                                 {{ substr($thread->title, 0, 30) }}...
                             @else
                                 {{$thread->title}}
+                            @endif
+
+                            @if ($thread->is_locked)
+                                <span title="Locked" style="width: 40px"><i class="fa fa-lock"></i></span>
+                            @else
+                                <span title="Opened" style="width: 40px"><i class="fa fa-unlock"></i></span>
                             @endif
                         </div>
                         <div class="card-body d-flex flex-column">

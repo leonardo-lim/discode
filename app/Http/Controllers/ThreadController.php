@@ -68,12 +68,20 @@ class ThreadController extends Controller
     public function show($id)
     {
         $thread = Thread::find($id);
-        // dd($thread);
         $profiles = Profile::all();
         $replies = Reply::with('user')->orderBy('created_at', 'desc')->get();
         $content = 'detail';
         
         return view('main', compact('thread', 'profiles', 'replies', 'content'));
+    }
+
+    public function lock($id)
+    {
+        $thread = Thread::find($id);
+        $thread->is_locked ? $thread->is_locked = 0 : $thread->is_locked = 1;
+        $is_locked = $thread->is_locked;
+        $thread->save();
+        return $thread->is_locked ? back()->with(compact('is_locked'))->with('success', 'Thread locked successfully.') : back()->with(compact('is_locked'))->with('success', 'Thread opened successfully.');
     }
 
     /**

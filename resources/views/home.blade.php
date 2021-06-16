@@ -15,7 +15,7 @@
                     <hr class="my-4">
                     <p>Click button below to see what people share.</p>
                     <p class="lead">
-                        <a class="btn btn-primary btn-lg" href="/thread" role="button">See Thread</a>
+                        <a class="btn btn-primary btn-lg" href="/thread" role="button"><i class="fa fa-eye"></i> See Thread</a>
                     </p>
                 </div>
             </div>
@@ -55,38 +55,6 @@
                 <div class="card-body">
                     <p class="text-center text-white">We always prioritize our user convenience and safety. Therefore, we use the best encryption method and keep our website secure and safe from the hacker. We also use Two-Factor Authentication that make your account safer.</p>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="footer text-center text-white mt-5 p-3">
-            <div class="row mb-3">
-                <div class="col-4">
-                    <a href="/thread" class="d-block text-info text-decoration-none"><i class="fa fa-sticky-note"></i> Thread</a>
-                </div>
-                <div class="col-4">
-                    <a href="/tag" class="d-block text-info text-decoration-none"><i class="fa fa-tag"></i> Tag</a>
-                </div>
-                <div class="col-4">
-                    <a href="/user" class="d-block text-info text-decoration-none"><i class="fa fa-user"></i> User</a>
-                </div>
-            </div>
-
-            <hr>
-
-            <div class="row mb-3">
-                <div class="col-4 mb-3">
-                    <a href="https://www.instagram.com" class="text-primary text-decoration-none"><i class="fa fa-instagram"></i> Follow Us</a>
-                </div>
-                <div class="col-4">
-                    <a href="https://www.youtube.com" class="text-danger text-decoration-none"><i class="fa fa-youtube"></i> Subscribe Us</a>
-                </div>
-                <div class="col-4">
-                    <a href="https://www.whatsapp.com" class="text-success text-decoration-none"><i class="fa fa-whatsapp"></i> Chat Us</a>
-                </div>
-                <hr>
-                <footer id="copyright"></footer>
             </div>
         </div>
     </div>

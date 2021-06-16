@@ -20,6 +20,7 @@
     </video>
     
     <div class="container-fluid">
+        {{-- Navbar --}}
         <div class="row">
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
@@ -78,6 +79,7 @@
             </nav>
         </div>
 
+        {{-- Success Message --}}
         <div class="row">
             @if (session('success'))
                 <div class="alert alert-success w-50 m-auto my-3 text-center alert-dismissible fade show" role="alert">
@@ -87,6 +89,7 @@
             @endif
         </div>
 
+        {{-- Content --}}
         @if ($content === 'home')
             @include('home')
             @yield('content')
@@ -134,7 +137,47 @@
             @include('user.edit')
             @yield('content')
         @endif
+
+        {{-- Footer --}}
+        <div class="row">
+            <div class="footer text-center text-white mt-5 p-3">
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <a href="/thread" class="text-info text-decoration-none"><i class="fa fa-sticky-note"></i> Thread</a>
+                    </div>
+                    <div class="col-4">
+                        <a href="/tag" class="text-info text-decoration-none"><i class="fa fa-tag"></i> Tag</a>
+                    </div>
+                    <div class="col-4">
+                        <a href="/user" class="text-info text-decoration-none"><i class="fa fa-user"></i> User</a>
+                    </div>
+                </div>
+    
+                <hr>
+    
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <a href="https://www.instagram.com" class="text-primary text-decoration-none"><i class="fa fa-instagram"></i> Follow Us</a>
+                    </div>
+                    <div class="col-4">
+                        <a href="https://www.youtube.com" class="text-danger text-decoration-none"><i class="fa fa-youtube"></i> Subscribe Us</a>
+                    </div>
+                    <div class="col-4">
+                        <a href="https://www.whatsapp.com" class="text-success text-decoration-none"><i class="fa fa-whatsapp"></i> Chat Us</a>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    <div class="col">
+                        <footer id="copyright" class="text-info"></footer>
+                    </div>
+                </div>
+            </div>
+        </div>
         
+        {{-- Up Button --}}
         <button id="upButton" class="btn btn-primary mb-3" style="position: fixed; bottom: 0; right: 20px; display: none"><i class="fa fa-arrow-up"></i></button>
     </div>
 

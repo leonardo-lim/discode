@@ -6,6 +6,7 @@ const hideReplyButton = document.getElementsByClassName('hideReply');
 const replyInReply = document.getElementsByClassName('replyInReply');
 const tagInput = document.querySelector('#tagInput');
 const tagDisplay = document.querySelector('#tagDisplay');
+const footer = document.querySelector('.footer');
 const copyright = document.querySelector('#copyright');
 let totalReplyInReply = replyInReply.length;
 
@@ -73,7 +74,12 @@ if (tagInput) {
     });
 }
 
-copyright.innerHTML = `Copyright ${new Date().getFullYear()} Discode. All rights reserved.`;
+copyright.innerHTML = `Copyright &copy; ${new Date().getFullYear()} Discode. All rights reserved.`;
+
+if (document.body.offsetHeight < 700) {
+    footer.style.position = 'fixed';
+    footer.style.bottom = '0';
+}
 
 $(document).ready(function(){
     $(".mul-select").select2({

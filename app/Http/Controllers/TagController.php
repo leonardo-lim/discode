@@ -44,7 +44,7 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required | max:255'
+            'name' => 'required | max:255 | unique:tags,name'
         ]);
         
         $tag = new Tag;
@@ -63,7 +63,6 @@ class TagController extends Controller
     {
         $tag = Tag::find($id);
         $threads = Thread::all();
-        // dd($threads);
         $total = Thread::count();
         $profiles = Profile::all();
         $replies = Reply::with('user')->orderBy('created_at', 'desc')->get();
