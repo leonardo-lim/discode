@@ -3,16 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Profile;
 
 class MainController extends Controller
 {
-    public function index() {
+    public function index()
+    {
+        $profiles = Profile::all();
         $content = 'home';
-        return view('main', compact('content'));
+        return view('main', compact('profiles', 'content'));
     }
 
-    public function about() {
+    public function about()
+    {
+        $profiles = Profile::all();
         $content = 'about';
-        return view('main', compact('content'));
+        return view('main', compact('profiles', 'content'));
     }
 }

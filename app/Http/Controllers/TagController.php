@@ -18,9 +18,10 @@ class TagController extends Controller
     public function index()
     {
         $tags = Tag::orderBy('created_at', 'desc')->get();
+        $profiles = Profile::all();
         $total = Tag::count();
         $content = 'tag';
-        return view('main', compact('tags', 'total', 'content'));
+        return view('main', compact('tags', 'profiles', 'total', 'content'));
     }
 
     /**
@@ -31,8 +32,9 @@ class TagController extends Controller
     public function create()
     {
         $content = 'createTag';
+        $profiles = Profile::all();
         $tags = Tag::all();
-        return view('main', compact('content', 'tags'));
+        return view('main', compact('content', 'profiles', 'tags'));
     }
 
     /**
@@ -79,8 +81,9 @@ class TagController extends Controller
     public function edit($id)
     {
         $tag = Tag::find($id);
+        $profiles = Profile::all();
         $content = 'editTag';
-        return view('main', compact('tag', 'content'));
+        return view('main', compact('tag', 'profiles', 'content'));
     }
 
     /**

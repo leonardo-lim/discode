@@ -15,12 +15,14 @@
             @foreach ($tags as $tag)
                 <div class="col-xl-4 col-md-6">
                     <div class="card bg-transparent text-white p-0 mb-5 border-0" style="height: 100px">
-                        <a href="/tag/{{$tag->id}}/edit" class="btn btn-warning text-white" style="position: absolute; top: -10px; right: 28px"><i class="fa fa-edit"></i></a>
-                        <form action="{{url('/tag') . '/' . $tag->id}}" method="POST" class="d-inline">
-                            @method('delete')
-                            @csrf
-                            <button type="submit" class="btn btn-danger" style="position: absolute; top: -10px; right: -10px" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
-                        </form>
+                        @if (Auth::user()->name === 'Admin')
+                            <a href="/tag/{{$tag->id}}/edit" class="btn btn-warning text-white" style="position: absolute; top: -10px; right: 28px"><i class="fa fa-edit"></i></a>
+                            <form action="{{url('/tag') . '/' . $tag->id}}" method="POST" class="d-inline">
+                                @method('delete')
+                                @csrf
+                                <button type="submit" class="btn btn-danger" style="position: absolute; top: -10px; right: -10px" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
+                            </form>
+                        @endif
 
                         <div class="text-center card-box">
                             <div class="member-card pt-2 pb-2">

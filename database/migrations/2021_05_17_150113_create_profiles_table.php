@@ -15,7 +15,6 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->integer('age')->nullable();
             $table->string('full_name')->nullable();
             $table->string('job')->nullable();
             $table->string('bio')->nullable();
@@ -23,7 +22,8 @@ class CreateProfilesTable extends Migration
             $table->string('date_of_birth')->nullable();
             $table->string('region')->nullable();
             $table->string('photo_url')->nullable();
-            $table->unsignedBigInteger("user_id");
+            $table->unsignedBigInteger('user_id');
+            $table->timestamps();
         });
         Schema::table('profiles', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');

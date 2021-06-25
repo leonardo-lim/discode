@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Profile;
 use App\Thread;
@@ -31,7 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('createprofile');
     }
 
     /**
@@ -42,7 +43,26 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'full_name' => 'required | max:255',
+            'job' => 'required | max:255',
+            'gender' => 'required | max:255',
+            'date_of_birth' => 'required | max:255',
+            'region' => 'required | max:255',
+            'bio' => 'max:255'
+        ]);
+
+        $profile = new Profile;
+        $profile->full_name = $request->full_name;
+        $profile->job = $request->job;
+        $profile->gender = $request->gender;
+        $profile->date_of_birth = $request->date_of_birth;
+        $profile->region = $request->region;
+        $profile->bio = $request->bio;
+        $profile->user_id = Auth::id();
+        $profile->save();
+
+        return redirect(url('/user' . '/' . Auth::id()))->with('success', 'A profile created successfully.');
     }
 
     /**
@@ -90,7 +110,7 @@ class UserController extends Controller
             'gender' => 'required | max:255',
             'date_of_birth' => 'required | max:255',
             'region' => 'required | max:255',
-            'bio' => 'required | max:255'
+            'bio' => 'max:255'
         ]);
 
         $profile = Profile::find($id);
@@ -102,7 +122,7 @@ class UserController extends Controller
         $profile->bio = $request->bio;
         $profile->save();
 
-        return redirect(url('/user')  . '/' . $profile->user_id)->with('success', 'Your account updated successfully.');
+        return redirect(url('/user')  . '/' . Auth::id())->with('success', 'Your account updated successfully.');
     }
 
     /**

@@ -63,12 +63,49 @@
                             </li>
                         </ul>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link btn btn-info" href="#"><i class="fa fa-user-plus"></i> Register</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link btn btn-primary" href="#"><i class="fa fa-sign-in"></i> Login</a>
-                            </li>
+                            @guest
+                                @if (Route::has('register'))
+                                    <li class="nav-item">
+                                        <a class="nav-link btn btn-info" href="{{ route('register') }}"><i class="fa fa-user-plus"></i> {{ __('Register') }}</a>
+                                    </li>
+                                @endif
+                                <li class="nav-item">
+                                    <a class="nav-link btn btn-primary" href="{{ route('login') }}"><i class="fa fa-sign-in"></i> {{ __('Login') }}</a>
+                                </li>
+                            @else
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        @foreach ($profiles as $profile)
+                                            @if (Auth::id() === $profile['user_id'])
+                                                @if (!$profile['photo_url'])
+                                                    <img src="{{ asset('profile/default.png') }}" class="rounded-circle" width="40" height="40" alt="Profile Picture">
+                                                    {{ Auth::user()->name }}
+                                                @else
+                                                    <img src="{{ asset('profile/' . $profile['photo_url']) }}" class="rounded-circle" width="40" height="40" alt="Profile Picture">
+                                                    {{ Auth::user()->name }}
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{url('/user' . '/' . Auth::id())}}">
+                                            <i class="fa fa-user"></i> My Profile
+                                        </a>
+                                        <a class="dropdown-item" href="/mythread">
+                                            <i class="fa fa-sticky-note"></i> My Thread
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <i class="fa fa-sign-out"></i> {{ __('Logout') }}
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            @endguest
                         </ul>
                         {{-- <form class="d-flex">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -96,8 +133,14 @@
         @elseif ($content === 'about')
             @include('about')
             @yield('content')
+        @elseif ($content === 'login')
+            @include('auth.login')
+            @yield('content')
         @elseif ($content === 'thread')
             @include('thread.read')
+            @yield('content')
+        @elseif ($content === 'mythread')
+            @include('thread.myread')
             @yield('content')
         @elseif ($content === 'create')
             @include('thread.create')

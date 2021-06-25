@@ -1,6 +1,11 @@
 @section('content')
     <div class="container-fluid" id="detailsUser">
-        <h1 class="text-white text-center">User Profile</h1>
+        @if (Auth::id() === $user->id)
+            <h1 class="text-white text-center">My Profile</h1>
+        @else
+            <h1 class="text-white text-center">User Profile</h1>
+        @endif
+
         <div class="row">
             <div class="col-xl-8 col-md-8 col-sm-10 m-auto">
                 <div class="card bg-transparent text-white p-0 mb-3 mt-3 border-0 rounded-top" style="min-height: 300px">
@@ -137,28 +142,33 @@
                 </div>
             </div>
         </div>
-        <div class="row my-3">
-            <div class="col-xl-8 col-md-8 col-sm-10 m-auto">
-                <div class="row">
-                    <div class="col">
-                        <a href="/user/{{$user->id}}/edit" class="btn btn-warning bg-transparent text-white w-100" style="top: -10px; right: 28px"><i class="fa fa-edit"></i> Edit Account</a>
+
+        @if (Auth::user()->name === 'Admin' || Auth::id() === $user->id)
+            <div class="row my-3">
+                <div class="col-xl-8 col-md-8 col-sm-10 m-auto">
+                    <div class="row">
+                        <div class="col">
+                            <a href="/user/{{$user->id}}/edit" class="btn btn-warning bg-transparent text-white w-100" style="top: -10px; right: 28px"><i class="fa fa-edit"></i> Edit Account</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row my-3">
-            <div class="col-xl-8 col-md-8 col-sm-10 m-auto">
-                <div class="row">
-                    <div class="col">
-                        <form action="{{url('/user') . '/' . $user->id}}" method="POST" class="d-inline">
-                            @method('delete')
-                            @csrf
-                            <button type="submit" class="btn btn-danger bg-transparent w-100" style="top: -10px; right: -10px" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> Delete Account</button>
-                        </form>
+
+            <div class="row my-3">
+                <div class="col-xl-8 col-md-8 col-sm-10 m-auto">
+                    <div class="row">
+                        <div class="col">
+                            <form action="{{url('/user') . '/' . $user->id}}" method="POST" class="d-inline">
+                                @method('delete')
+                                @csrf
+                                <button type="submit" class="btn btn-danger bg-transparent w-100" style="top: -10px; right: -10px" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> Delete Account</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
+
         <div class="row my-3">
             <div class="col-xl-8 col-md-8 col-sm-10 m-auto">
                 <div class="row">

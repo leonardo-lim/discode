@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Thread;
 use App\Reply;
 use App\Profile;
@@ -24,6 +25,14 @@ class ThreadController extends Controller
         return view('main', compact('threads', 'profiles', 'total', 'content'));
     }
 
+    public function mythread()
+    {
+        $threads = Thread::with('user')->orderBy('created_at', 'desc')->get();
+        $profiles = Profile::all();
+        $content = 'mythread';
+        return view('main', compact('threads', 'profiles', 'content'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -32,8 +41,9 @@ class ThreadController extends Controller
     public function create()
     {
         $content = 'create';
+        $profiles = Profile::all();
         $tags = Tag::all();
-        return view('main', compact('content', 'tags'));
+        return view('main', compact('content', 'profiles', 'tags'));
     }
 
     /**
@@ -52,7 +62,7 @@ class ThreadController extends Controller
         $thread = new Thread;
         $thread->title = $request->title;
         $thread->content = $request->content;
-        $thread->user_id = 1;
+        $thread->user_id = Auth::id();
         $thread->save();
         $thread->tag()->attach($request->tag);
 
@@ -80,6 +90,7 @@ class ThreadController extends Controller
         $thread = Thread::find($id);
         $thread->is_locked ? $thread->is_locked = 0 : $thread->is_locked = 1;
         $is_locked = $thread->is_locked;
+        $thread->timestamps = false;
         $thread->save();
         return $thread->is_locked ? back()->with(compact('is_locked'))->with('success', 'Thread locked successfully.') : back()->with(compact('is_locked'))->with('success', 'Thread opened successfully.');
     }
@@ -93,8 +104,9 @@ class ThreadController extends Controller
     public function edit($id)
     {
         $thread = Thread::find($id);
+        $profiles = Profile::all();
         $content = 'edit';
-        return view('main', compact('thread', 'content'));
+        return view('main', compact('thread', 'profiles', 'content'));
     }
 
     /**

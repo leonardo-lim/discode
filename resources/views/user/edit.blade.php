@@ -1,14 +1,14 @@
 @section('content')
     @foreach ($profiles as $profile)
-        @if ($user->id === $profile['user_id'])
+        @if (Auth::id() === $profile->user_id)
             <h1 class="text-white text-center">Edit User</h1>
             <div class="container-fluid w-75" id="editUser">
-                <form action="{{route('user.update',$user->id)}}" method="POST">
+                <form action="{{route('user.update', $profile->id)}}" method="POST">
                     @method('put')
                     @csrf
                     <div class="row mt-3">
                         <div class="input-group m-auto mb-3">
-                            <input type="text" class="form-control @error('Fullname') is-invalid @enderror" name="Fullname" placeholder="Edit Fullname" value="{{$profile->full_name}}">
+                            <input type="text" class="form-control @error('Fullname') is-invalid @enderror" name="full_name" placeholder="Edit Fullname" value="{{$profile->full_name}}">
                             @error('Fullname')
                                 <div class="invalid-feedback bg-danger text-white rounded mt-2 p-2">{{$message}}</div>
                             @enderror

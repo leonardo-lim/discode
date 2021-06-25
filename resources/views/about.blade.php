@@ -7,17 +7,20 @@
             </div>
             <div class="col-md-6 col-12">
                 <h5 class="text-center bg-white rounded mt-3 mb-0 p-1"><i class="fa fa-percent"></i> Markup Language</h5>
-                <span class="badge badge-danger bg-danger d-block fs-5">HTML</span>
-                <span class="badge badge-primary bg-primary d-block fs-5">CSS</span>
+                <span class="badge bg-danger d-block fs-5">HTML</span>
+                <span class="badge bg-primary d-block fs-5">CSS</span>
 
                 <h5 class="text-center bg-white rounded mt-3 mb-0 p-1"><i class="fa fa-code"></i> Programming Language</h5>
-                <span class="badge badge-warning bg-warning d-block fs-5">JavaScript</span>
-                <span class="badge badge-warning bg-purple d-block fs-5">PHP</span>
+                <span class="badge  bg-warning d-block fs-5">JavaScript</span>
+                <span class="badge bg-purple d-block fs-5">PHP</span>
 
                 <h5 class="text-center bg-white rounded mt-3 mb-0 p-1"><i class="fa fa-cog"></i> Framework</h5>
-                <span class="badge badge-warning bg-danger d-block fs-5">Laravel</span>
-                <span class="badge badge-warning bg-orange d-block fs-5">jQuery</span>
-                <span class="badge badge-primary bg-purple d-block fs-5">Bootstrap</span>
+                <span class="badge bg-danger d-block fs-5">Laravel</span>
+                <span class="badge bg-orange d-block fs-5">jQuery</span>
+                <span class="badge bg-purple d-block fs-5">Bootstrap</span>
+                
+                <h5 class="text-center bg-white rounded mt-3 mb-0 p-1"><i class="fa fa-circle"></i> Icon</h5>
+                <span class="badge bg-primary d-block fs-5">Font Awesome</span>
             </div>
         </div>
 
@@ -26,12 +29,12 @@
         <div class="row">
             <h1 class="text-center text-white mb-5"><i class="fa fa-info-circle"></i> Project Details</h1>
             <div class="col-md-6 col-12">
-                <h3 class="text-white float-end"><i class="fa fa-hourglass-start"></i> Start on Friday, May 14, 2021</h3>
-                <h3 class="text-white float-end"><i class="fa fa-hourglass-end"></i> Finish on Sunday, June 27, 2021</h3>
-                <h3 class="text-white float-end"><i class="fa fa-pencil"></i> Created using Visual Studio Code</h3>
-                <h3 class="text-white float-end"><i class="fa fa-users"></i> Collaborate using Github</h3>
-                <h3 class="text-white float-end"><i class="fa fa-server"></i> Server by Apache</h3>
-                <h3 class="text-white float-end"><i class="fa fa-database"></i> Database by MySQL</h3>
+                <h3 class="text-info float-end"><i class="fa fa-hourglass-start text-primary"></i> Start on Friday, May 14, 2021</h3>
+                <h3 class="text-info float-end"><i class="fa fa-hourglass-end text-primary"></i> Finish on Sunday, June 27, 2021</h3>
+                <h3 class="text-info float-end"><i class="fa fa-pencil text-primary"></i> Created using Visual Studio Code</h3>
+                <h3 class="text-info float-end"><i class="fa fa-users text-primary"></i> Collaborate using Github</h3>
+                <h3 class="text-info float-end"><i class="fa fa-server text-primary"></i> Server by Apache</h3>
+                <h3 class="text-info float-end"><i class="fa fa-database text-primary"></i> Database by MySQL</h3>
             </div>
             <div class="col-md-6 col-12">
                 <img src="{{ asset('img/projection.png') }}" class="w-100 rounded" alt="Projection">

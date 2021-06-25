@@ -22,12 +22,15 @@
             @foreach ($threads as $thread)
                 <div class="col-xl-4 col-md-6">
                     <div class="card bg-transparent text-white p-0 mb-5 border-0" style="height: 300px">
-                        <a href="/thread/{{$thread->id}}/edit" class="btn btn-warning text-white" style="position: absolute; top: -10px; right: 28px"><i class="fa fa-edit"></i></a>
-                        <form action="{{url('/thread') . '/' . $thread->id}}" method="POST" class="d-inline">
-                            @method('delete')
-                            @csrf
-                            <button type="submit" class="btn btn-danger" style="position: absolute; top: -10px; right: -10px" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
-                        </form>
+                        @if (Auth::user()->name === 'Admin')
+                            <a href="/thread/{{$thread->id}}/edit" class="btn btn-warning text-white" style="position: absolute; top: -10px; right: 28px"><i class="fa fa-edit"></i></a>
+                            <form action="{{url('/thread') . '/' . $thread->id}}" method="POST" class="d-inline">
+                                @method('delete')
+                                @csrf
+                                <button type="submit" class="btn btn-danger" style="position: absolute; top: -10px; right: -10px" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
+                            </form>
+                        @endif
+                        
                         <div class="card-header rounded-top overflow-hidden border-0" style="max-height: 35px">
                             @if (strlen($thread->title) > 30)
                                 {{ substr($thread->title, 0, 30) }}...

@@ -6,15 +6,18 @@
                 <div class="card bg-transparent text-white p-0 mb-3 mt-3 border-0 rounded-top" style="min-height: 300px">
                     <div class="card-header bg-info rounded-top pb-0 border-0">
                         <h3 class="d-inline">{{$thread->title}}</h3>
-                        <form action="{{ route('thread.lock', $thread->id) }}" method="POST" class="d-inline">
-                            @method('patch')
-                            @csrf
-                            @if ($thread->is_locked)
-                                <button type="submit" class="btn btn-warning float-end mb-2" title="Open Thread" style="width: 40px"><i class="fa fa-lock"></i></button>
-                            @else
-                                <button type="submit" class="btn btn-warning float-end mb-2" title="Lock Thread" style="width: 40px"><i class="fa fa-unlock"></i></button>
-                            @endif
-                        </form>
+                        
+                        @if (Auth::user()->name === 'Admin')
+                            <form action="{{ route('thread.lock', $thread->id) }}" method="POST" class="d-inline">
+                                @method('patch')
+                                @csrf
+                                @if ($thread->is_locked)
+                                    <button type="submit" class="btn btn-warning float-end mb-2" title="Open Thread" style="width: 40px"><i class="fa fa-lock"></i></button>
+                                @else
+                                    <button type="submit" class="btn btn-warning float-end mb-2" title="Lock Thread" style="width: 40px"><i class="fa fa-unlock"></i></button>
+                                @endif
+                            </form>
+                        @endif
                     </div>
                     <div class="card-body d-flex flex-column">
                         <div class="row">

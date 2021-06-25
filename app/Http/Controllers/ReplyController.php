@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Reply;
 use App\Thread;
 
@@ -25,8 +26,9 @@ class ReplyController extends Controller
      */
     public function create()
     {
+        $profiles = Profile::all();
         $content = 'detail';
-        return view('main', compact('content'));
+        return view('main', compact('profiles', 'content'));
     }
 
     /**
@@ -43,7 +45,7 @@ class ReplyController extends Controller
 
         $reply = new Reply();
         $reply->content = $request->content;
-        $reply->user_id = 1;
+        $reply->user_id = Auth::id();
         $reply->thread_id = $id;
         $reply->save();
 
@@ -86,8 +88,9 @@ class ReplyController extends Controller
     public function edit($id)
     {
         $reply = Reply::find($id);
+        $profiles = Profile::all();
         $content = 'editReply';
-        return view('main', compact('reply', 'content'));
+        return view('main', compact('reply', 'profiles', 'content'));
     }
 
     /**

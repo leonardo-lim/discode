@@ -78,15 +78,17 @@
                                     </div>
 
                                     <div class="col-3">
-                                        {{-- DELETE REPLY --}}
-                                        <form action="{{route('reply.destroy', $reply->id)}}" method="POST" class="d-inline">
-                                            @method('delete')
-                                            @csrf
-                                            <button type="submit" class="btn btn-danger float-end" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
-                                        </form>
+                                        @if (Auth::user()->name === 'Admin' || Auth::id() === $reply->user['id'])
+                                            {{-- DELETE REPLY --}}
+                                            <form action="{{route('reply.destroy', $reply->id)}}" method="POST" class="d-inline">
+                                                @method('delete')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger float-end" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
+                                            </form>
 
-                                        {{-- EDIT REPLY --}}
-                                        <a href="/reply/{{$reply->id}}/edit" class="btn btn-warning text-white float-end"><i class="fa fa-edit"></i></a>
+                                            {{-- EDIT REPLY --}}
+                                            <a href="/reply/{{$reply->id}}/edit" class="btn btn-warning text-white float-end"><i class="fa fa-edit"></i></a>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="row">
@@ -192,15 +194,17 @@
                                                     </div>
 
                                                     <div class="col-3">
-                                                        {{-- DELETE REPLY --}}
-                                                        <form action="{{route('reply.destroy',$r->id)}}" method="POST" class="d-inline">
-                                                            @method('delete')
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-danger float-end" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
-                                                        </form>
+                                                        @if (Auth::user()->name === 'Admin' || Auth::id() === $r->user['id'])
+                                                            {{-- DELETE REPLY --}}
+                                                            <form action="{{route('reply.destroy',$r->id)}}" method="POST" class="d-inline">
+                                                                @method('delete')
+                                                                @csrf
+                                                                <button type="submit" class="btn btn-danger float-end" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
+                                                            </form>
 
-                                                        {{-- EDIT REPLY --}}
-                                                        <a href="/reply/{{$r->id}}/edit" class="btn btn-warning text-white float-end"><i class="fa fa-edit"></i></a>
+                                                            {{-- EDIT REPLY --}}
+                                                            <a href="/reply/{{$r->id}}/edit" class="btn btn-warning text-white float-end"><i class="fa fa-edit"></i></a>
+                                                        @endif
                                                     </div>
                                                     
                                                     <div class="col ps-4">
