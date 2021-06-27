@@ -2,8 +2,23 @@
     <div class="container">
         <div class="row my-3">
             <div class="col text-center">
-                <a href="" class="thread-tab"><i class="fa fa-fire"></i> Trending</a>
-                <a href="" class="mx-3 thread-tab active"><i class="fa fa-refresh"></i> Latest</a>
+                @if ($content === 'thread')
+                    <a href="/thread" class="mx-3 thread-tab active"><i class="fa fa-circle"></i> Default</a>
+                @else
+                    <a href="/thread" class="mx-3 thread-tab"><i class="fa fa-circle"></i> Default</a>
+                @endif
+
+                @if ($content === 'oldestthread')
+                    <a href="/thread/oldest" class="mx-3 thread-tab active"><i class="fa fa-arrow-down"></i> Oldest</a>
+                @else
+                    <a href="/thread/oldest" class="mx-3 thread-tab"><i class="fa fa-arrow-down"></i> Oldest</a>
+                @endif
+
+                @if ($content === 'latestthread')
+                    <a href="/thread/latest" class="mx-3 thread-tab active"><i class="fa fa-arrow-up"></i> Latest</a>
+                @else
+                    <a href="/thread/latest" class="mx-3 thread-tab"><i class="fa fa-arrow-up"></i> Latest</a>
+                @endif
             </div>
         </div>
         
@@ -109,12 +124,50 @@
                                 </p>
                             </div>
 
+                            @php($likeCount = 0)
+                            @foreach ($likes as $like)
+                                @if ($like->thread_id === $thread->id && $like->is_liked)
+                                    @php($likeCount++)
+                                @endif
+                            @endforeach
+
+                            @php($dislikeCount = 0)
+                            @foreach ($dislikes as $dislike)
+                                @if ($dislike->thread_id === $thread->id && $dislike->is_disliked)
+                                    @php($dislikeCount++)
+                                @endif
+                            @endforeach
+
                             <div class="row mt-auto m-0">
                                 <div class="col-4 p-0">
-                                    <button class="btn btn-primary w-100" title="Like"><i class="fa fa-thumbs-up" aria-hidden="true"></i> 1</button>
+                                    @php($check = false)
+                                    @foreach ($likes as $like)
+                                        @if ($like->is_liked && $like->user_id === Auth::id() && $like->thread_id === $thread->id)
+                                            @php($check = true)
+                                            @break
+                                        @endif
+                                    @endforeach
+
+                                    @if ($check)
+                                        <a href="/thread/{{$thread->id}}" class="btn btn-light text-primary w-100" title="Liked"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$likeCount}}</a>
+                                    @else
+                                        <a href="/thread/{{$thread->id}}" class="btn btn-primary w-100" title="Like"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$likeCount}}</a>
+                                    @endif
                                 </div>
                                 <div class="col-4 p-0">
-                                    <button class="btn btn-danger w-100" title="Dislike"><i class="fa fa-thumbs-down" aria-hidden="true"></i> 1</button>
+                                    @php($check = false)
+                                    @foreach ($dislikes as $dislike)
+                                        @if ($dislike->is_disliked && $dislike->user_id === Auth::id() && $dislike->thread_id === $thread->id)
+                                            @php($check = true)
+                                            @break
+                                        @endif
+                                    @endforeach
+
+                                    @if ($check)
+                                        <a href="/thread/{{$thread->id}}" class="btn btn-light text-danger w-100" title="Disliked"><i class="fa fa-thumbs-down" aria-hidden="true"></i> {{$dislikeCount}}</a>
+                                    @else
+                                        <a href="/thread/{{$thread->id}}" class="btn btn-danger w-100" title="Dislike"><i class="fa fa-thumbs-down" aria-hidden="true"></i> {{$dislikeCount}}</a>
+                                    @endif
                                 </div>
                                 <div class="col-4 p-0">
                                     @php($count = 0)

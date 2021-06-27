@@ -22,4 +22,14 @@ class Thread extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+
+    public function like()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function dislike()
+    {
+        return $this->hasMany(Dislike::class);
+    }
 }

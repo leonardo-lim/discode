@@ -154,6 +154,12 @@ video {
     }
 }
 
+/* Login */
+#login input:hover {
+    box-shadow: rgba(0, 225, 255, 0.3) 0px 4px 16px,
+        rgba(0, 255, 255, 0.3) 0px 8px 32px;
+}
+
 /* Thread, Reply Read */
 .card {
     box-shadow: rgba(0, 225, 255, 0.5) 0px 4px 16px,

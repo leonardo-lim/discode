@@ -122,7 +122,11 @@
                                     @php($count = 0)
                                     @foreach ($threads as $thread)
                                         @if ($thread->user_id === $user->id)
-                                            @php($count++)
+                                            @foreach ($likes as $like)
+                                                @if ($like->thread_id === $thread->id && $like->is_liked)
+                                                    @php($count++)
+                                                @endif
+                                            @endforeach
                                         @endif
                                     @endforeach
 

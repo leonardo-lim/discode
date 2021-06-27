@@ -4,10 +4,10 @@
         <div class="row">
             <div class="col-xl-8 col-md-8 col-sm-10 m-auto">
                 <div class="card bg-transparent text-white p-0 mb-3 mt-3 border-0 rounded-top" style="min-height: 300px">
-                    <div class="card-header bg-info rounded-top pb-0 border-0">
+                    <div class="card-header bg-info rounded-top border-0">
                         <h3 class="d-inline">{{$thread->title}}</h3>
                         
-                        @if (Auth::user()->name === 'Admin')
+                        @if (Auth::user()->name === 'Admin' || Auth::id() === $thread->user['id'])
                             <form action="{{ route('thread.lock', $thread->id) }}" method="POST" class="d-inline">
                                 @method('patch')
                                 @csrf
@@ -17,6 +17,12 @@
                                     <button type="submit" class="btn btn-warning float-end mb-2" title="Lock Thread" style="width: 40px"><i class="fa fa-unlock"></i></button>
                                 @endif
                             </form>
+                        @else
+                            @if ($thread->is_locked)
+                                <span title="Locked"><i class="fa fa-lock fa-lg float-end mt-2"></i></span>
+                            @else
+                                <span title="Opened"><i class="fa fa-unlock fa-lg float-end mt-2"></i></span>
+                            @endif
                         @endif
                     </div>
                     <div class="card-body d-flex flex-column">
@@ -89,15 +95,61 @@
                             </div>
                         </div>
 
+                        @php($likeCount = 0)
+                        @foreach ($likes as $like)
+                            @if ($like->thread_id === $thread->id && $like->is_liked)
+                                @php($likeCount++)
+                            @endif
+                        @endforeach
+
+                        @php($dislikeCount = 0)
+                        @foreach ($dislikes as $dislike)
+                            @if ($dislike->thread_id === $thread->id && $dislike->is_disliked)
+                                @php($dislikeCount++)
+                            @endif
+                        @endforeach
+
                         <div class="row mt-auto m-0">
                             <div class="col-6 p-0">
-                                <button class="btn btn-primary w-100" title="Like"><i class="fa fa-thumbs-up" aria-hidden="true"></i> 1</button>
+                                <form action="{{route('thread.like', $thread->id)}}" method="POST">
+                                    @method('put')
+                                    @csrf
+                                    
+                                    @php($check = false)
+                                    @foreach ($likes as $like)
+                                        @if ($like->is_liked && $like->user_id === Auth::id() && $like->thread_id === $thread->id)
+                                            @php($check = true)
+                                            @break
+                                        @endif
+                                    @endforeach
+
+                                    @if ($check)
+                                        <button type="submit" class="btn btn-light text-primary w-100" title="Liked"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$likeCount}}</button>
+                                    @else
+                                        <button type="submit" class="btn btn-primary w-100" title="Like"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$likeCount}}</button>
+                                    @endif
+                                </form>
                             </div>
                             <div class="col-6 p-0">
-                                <button class="btn btn-danger w-100" title="Dislike"><i class="fa fa-thumbs-down" aria-hidden="true"></i> 1</button>
+                                <form action="{{route('thread.dislike', $thread->id)}}" method="POST">
+                                    @method('put')
+                                    @csrf
+
+                                    @php($check = false)
+                                    @foreach ($dislikes as $dislike)
+                                        @if ($dislike->is_disliked && $dislike->user_id === Auth::id() && $dislike->thread_id === $thread->id)
+                                            @php($check = true)
+                                            @break
+                                        @endif
+                                    @endforeach
+
+                                    @if ($check)
+                                        <button type="submit" class="btn btn-light text-danger w-100" title="Disliked"><i class="fa fa-thumbs-down" aria-hidden="true"></i> {{$dislikeCount}}</button>
+                                    @else
+                                        <button type="submit" class="btn btn-danger w-100" title="Dislike"><i class="fa fa-thumbs-down" aria-hidden="true"></i> {{$dislikeCount}}</button>
+                                    @endif
+                                </form>
                             </div>
-                        </div>
-                        <div class="tags">
                         </div>
                     </div>
                 </div>

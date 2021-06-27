@@ -54,4 +54,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Reply::class, 'user_id', 'id');
     }
+
+    public function like()
+    {
+        return $this->hasMany(Like::class, 'user_id', 'id');
+    }
+
+    public function dislike()
+    {
+        return $this->hasMany(Dislike::class, 'user_id', 'id');
+    }
 }

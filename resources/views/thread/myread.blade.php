@@ -117,12 +117,50 @@
                                     </p>
                                 </div>
 
+                                @php($likeCount = 0)
+                                @foreach ($likes as $like)
+                                    @if ($like->thread_id === $thread->id && $like->is_liked)
+                                        @php($likeCount++)
+                                    @endif
+                                @endforeach
+
+                                @php($dislikeCount = 0)
+                                @foreach ($dislikes as $dislike)
+                                    @if ($dislike->thread_id === $thread->id && $dislike->is_disliked)
+                                        @php($dislikeCount++)
+                                    @endif
+                                @endforeach
+
                                 <div class="row mt-auto m-0">
                                     <div class="col-4 p-0">
-                                        <button class="btn btn-primary w-100" title="Like"><i class="fa fa-thumbs-up" aria-hidden="true"></i> 1</button>
+                                        @php($check = false)
+                                        @foreach ($likes as $like)
+                                            @if ($like->is_liked && $like->user_id === Auth::id() && $like->thread_id === $thread->id)
+                                                @php($check = true)
+                                                @break
+                                            @endif
+                                        @endforeach
+    
+                                        @if ($check)
+                                            <a href="/thread/{{$thread->id}}" class="btn btn-light text-primary w-100" title="Liked"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$likeCount}}</a>
+                                        @else
+                                            <a href="/thread/{{$thread->id}}" class="btn btn-primary w-100" title="Like"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$likeCount}}</a>
+                                        @endif
                                     </div>
                                     <div class="col-4 p-0">
-                                        <button class="btn btn-danger w-100" title="Dislike"><i class="fa fa-thumbs-down" aria-hidden="true"></i> 1</button>
+                                        @php($check = false)
+                                        @foreach ($dislikes as $dislike)
+                                            @if ($dislike->is_disliked && $dislike->user_id === Auth::id() && $dislike->thread_id === $thread->id)
+                                                @php($check = true)
+                                                @break
+                                            @endif
+                                        @endforeach
+    
+                                        @if ($check)
+                                            <a href="/thread/{{$thread->id}}" class="btn btn-light text-danger w-100" title="Disliked"><i class="fa fa-thumbs-down" aria-hidden="true"></i> {{$dislikeCount}}</a>
+                                        @else
+                                            <a href="/thread/{{$thread->id}}" class="btn btn-danger w-100" title="Dislike"><i class="fa fa-thumbs-down" aria-hidden="true"></i> {{$dislikeCount}}</a>
+                                        @endif
                                     </div>
                                     <div class="col-4 p-0">
                                         @php($count = 0)

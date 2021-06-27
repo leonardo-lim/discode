@@ -8,6 +8,9 @@ use App\User;
 use App\Profile;
 use App\Thread;
 use App\Reply;
+use App\Like;
+use App\Dislike;
+use Hash;
 
 class UserController extends Controller
 {
@@ -65,6 +68,30 @@ class UserController extends Controller
         return redirect(url('/user' . '/' . Auth::id()))->with('success', 'A profile created successfully.');
     }
 
+    public function changepassword()
+    {
+        $profiles = Profile::all();
+        return view('changepassword', compact('profiles'));
+    }
+
+    public function updatepassword(Request $request, $id)
+    {
+        $request->validate([
+            'old_password' => 'required | string | min:8 | max:255',
+            'password' => 'required | string | min:8 | max:255 | confirmed',
+        ]);
+
+        $user = auth()->user();
+
+        if (Hash::check($request->old_password, $user->password)) {
+            $user = User::find($id);
+            $user->password = Hash::make($request->password);
+            return redirect(url('/'))->with('success', 'Your password changed successfully.');
+        } else {
+            return back()->with('error', 'You have entered the wrong password');
+        }
+    }
+
     /**
      * Display the specified resource.
      *
@@ -75,10 +102,12 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $profiles = Profile::all();
+        $likes = Like::all();
+        $dislikes = Dislike::all();
         $threads = Thread::all();
         $replies = Reply::all();
         $content = 'userDetail';
-        return view('main', compact('user', 'profiles', 'threads', 'replies', 'content'));
+        return view('main', compact('user', 'profiles', 'likes', 'dislikes', 'threads', 'replies', 'content'));
     }
 
     /**
@@ -134,8 +163,9 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
+        $user->profile()->delete();
         $user->delete();
 
-        return redirect(url('/user'))->with('success', 'Your account deleted successfully.');
+        return redirect(url('/'))->with('success', 'Your account deleted successfully.');
     }
 }

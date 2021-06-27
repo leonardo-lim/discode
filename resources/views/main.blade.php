@@ -46,7 +46,7 @@
                                 @endif
                             </li>
                             <li class="nav-item dropdown">
-                                @if ($content === 'thread' || $content === 'create' || $content === 'edit' || $content === 'editReply' || $content === 'detail')
+                                @if ($content === 'thread' || $content === 'oldestthread' || $content === 'latestthread' || $content === 'create' || $content === 'edit' || $content === 'editReply' || $content === 'detail')
                                     <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-sticky-note"></i> Thread</a>
                                 @elseif ($content === 'tag' || $content === 'tagDetail' || $content === 'createTag' || $content === 'editTag')
                                     <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-tag"></i> Tag</a>
@@ -88,14 +88,19 @@
                                         @endforeach
                                     </a>
 
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{url('/user' . '/' . Auth::id())}}">
-                                            <i class="fa fa-user"></i> My Profile
-                                        </a>
-                                        <a class="dropdown-item" href="/mythread">
-                                            <i class="fa fa-sticky-note"></i> My Thread
-                                        </a>
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="position: absolute; top: 80px; right: 0">
+                                        @if (Auth::user()->name != 'Admin')
+                                            <a class="dropdown-item w-75" href="{{url('/user' . '/' . Auth::id())}}">
+                                                <i class="fa fa-user"></i> My Profile
+                                            </a>
+                                            <a class="dropdown-item w-75" href="/mythread">
+                                                <i class="fa fa-sticky-note"></i> My Thread
+                                            </a>
+                                            <a class="dropdown-item w-75" href="/changepassword">
+                                            <i class="fa fa-key"></i> Change Pass
+                                            </a>
+                                        @endif
+                                        <a class="dropdown-item w-75" href="{{ route('logout') }}"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             <i class="fa fa-sign-out"></i> {{ __('Logout') }}
                                         </a>
@@ -107,10 +112,6 @@
                                 </li>
                             @endguest
                         </ul>
-                        {{-- <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form> --}}
                     </div>
                 </div>
             </nav>
@@ -136,7 +137,7 @@
         @elseif ($content === 'login')
             @include('auth.login')
             @yield('content')
-        @elseif ($content === 'thread')
+        @elseif ($content === 'thread'|| $content === 'oldestthread' || $content === 'latestthread')
             @include('thread.read')
             @yield('content')
         @elseif ($content === 'mythread')

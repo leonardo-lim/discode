@@ -60,7 +60,7 @@ class ReplyController extends Controller
 
         $reply = new Reply();
         $reply->content = $request->content;
-        $reply->user_id = 1;
+        $reply->user_id = Auth::id();
         $reply->parent_id = $id;
         $reply->thread_id = $request->thread_id;
         $reply->save();
@@ -123,6 +123,7 @@ class ReplyController extends Controller
     public function destroy($id)
     {
         $reply = Reply::find($id);
+        $reply->replies()->delete();
         $reply->delete();
 
         return back()->with('success', 'A reply deleted successfully.'); 

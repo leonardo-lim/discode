@@ -18,15 +18,48 @@
         <source src="{{ asset('video/underwater.mp4') }}" type="video/mp4">
     </video>
 
-    <h1 class="text-white text-center pt-5"><i class="fa fa-user"></i> Create Profile</h1>
+    <h1 class="text-white text-center pt-5"><i class="fa fa-key"></i> Change Password</h1>
 
     <div class="container-fluid w-75" id="editUser">
-        <form action="{{url('/user' . '/' . Auth::id())}}" method="POST">
+        @foreach ($profiles as $profile)
+            @if (Auth::id() === $profile['user_id'])
+                <div class="row">
+                    <div class="col mx-auto mt-3">
+                        <div class="mx-auto w-25 rounded">
+                            @if (!$profile['photo_url'])
+                                <img src="{{ asset('profile/default.png') }}" class="img-thumbnail w-100" alt="Profile Picture">
+                            @else
+                                <img src="{{ asset('profile/' . $profile['photo_url']) }}" class="img-thumbnail w-100" alt="Profile Picture">
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Error Message --}}
+                <div class="row">
+                    @if (session('error'))
+                        <div class="alert alert-danger w-100 m-auto my-3 text-center alert-dismissible fade show" role="alert">
+                            {{ session('error') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                </div>
+
+                <div class="row mt-3">
+                    <div class="input-group m-auto mb-3">
+                        <input type="text" class="form-control" value="{{$profile->user['name']}}" readonly>
+                    </div>
+                </div>
+            @endif
+        @endforeach
+
+        <form action="{{route('user.updatepassword', $profile->user_id)}}" method="POST">
+            @method('put')
             @csrf
-            <div class="row mt-3">
+            <div class="row">
                 <div class="input-group m-auto mb-3">
-                    <input type="text" class="form-control @error('full_name') is-invalid @enderror" name="full_name" placeholder="Add Fullname">
-                    @error('full_name')
+                    <input type="password" class="form-control @error('old_password') is-invalid @enderror" name="old_password" placeholder="Add Current Password">
+                    @error('old_password')
                         <div class="invalid-feedback bg-danger text-white rounded mt-2 p-2">{{$message}}</div>
                     @enderror
                 </div>
@@ -34,8 +67,8 @@
 
             <div class="row">
                 <div class="input-group m-auto mb-3">
-                    <input type="text" class="form-control @error('job') is-invalid @enderror" name="job" placeholder="Add Job">
-                    @error('job')
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Add New Password">
+                    @error('password')
                         <div class="invalid-feedback bg-danger text-white rounded mt-2 p-2">{{$message}}</div>
                     @enderror
                 </div>
@@ -43,43 +76,16 @@
 
             <div class="row">
                 <div class="input-group m-auto mb-3">
-                    <input type="text" class="form-control @error('gender') is-invalid @enderror" name="gender" placeholder="Add Gender">
-                    @error('gender')
-                        <div class="invalid-feedback bg-danger text-white rounded mt-2 p-2">{{$message}}</div>
-                    @enderror
+                    <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" placeholder="Confirm New Password">
                 </div>
             </div>
 
             <div class="row">
-                <div class="input-group m-auto mb-3">
-                    <input type="text" class="form-control @error('date_of_birth') is-invalid @enderror" name="date_of_birth" placeholder="Add Date Of Birth">
-                    @error('date_of_birth')
-                        <div class="invalid-feedback bg-danger text-white rounded mt-2 p-2">{{$message}}</div>
-                    @enderror
+                <div class="col-6">
+                    <a href="/" class="btn btn-info text-white w-100"><i class="fa fa-times"></i> Cancel</a>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="input-group m-auto mb-3">
-                    <input type="text" class="form-control @error('region') is-invalid @enderror" name="region" placeholder="Add Region">
-                    @error('region')
-                        <div class="invalid-feedback bg-danger text-white rounded mt-2 p-2">{{$message}}</div>
-                    @enderror
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="input-group m-auto mb-4">
-                    <textarea class="form-control @error('bio') is-invalid @enderror" name="bio" placeholder="Add Bio" rows="5"></textarea>
-                    @error('bio')
-                        <div class="invalid-feedback bg-danger text-white rounded mt-2 p-2">{{$message}}</div>
-                    @enderror
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col">
-                    <button type="submit" class="btn btn-primary w-100"><i class="fa fa-plus"></i> Create</button>    
+                <div class="col-6">
+                    <button type="submit" class="btn btn-primary w-100"><i class="fa fa-refresh"></i> Update</button>
                 </div>
             </div>
         </form>
