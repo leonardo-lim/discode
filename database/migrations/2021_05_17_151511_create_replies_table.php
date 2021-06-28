@@ -18,13 +18,13 @@ class CreateRepliesTable extends Migration
             $table->string('content');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('thread_id');
-            $table->unsignedBigInteger('reply_id');
+            $table->unsignedBigInteger('parent_id');
             $table->timestamps();
         });
         Schema::table('replies', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('thread_id')->references('id')->on('threads');
-            $table->foreign('reply_id')->references('id')->on('replies');
+            $table->foreign('parent_id')->references('id')->on('replies');
         });
     }
 
