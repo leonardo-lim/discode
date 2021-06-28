@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
 </head>
 <body>
@@ -41,12 +41,33 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="input-group m-auto mb-3">
-                    <input type="text" class="form-control @error('gender') is-invalid @enderror" name="gender" placeholder="Add Gender">
-                    @error('gender')
-                        <div class="invalid-feedback bg-danger text-white rounded mt-2 p-2">{{$message}}</div>
-                    @enderror
+            <div class="row border border-1 p-1 m-0 mb-3 rounded">
+                <div class="col-4">
+                    <div class="form-check d-flex justify-content-center">
+                        <input type="radio" id="male" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="male">
+                        <label for="male" class="form-check-label text-white ms-2">Male</label>
+                        @error('gender')
+                            <div class="invalid-feedback bg-danger text-white rounded mt-2 p-2">{{$message}}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-check d-flex justify-content-center">
+                        <input type="radio" id="female" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="female">
+                        <label for="female" class="form-check-label text-white ms-2">Female</label>
+                        @error('gender')
+                            <div class="invalid-feedback bg-danger text-white rounded mt-2 p-2">{{$message}}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-check d-flex justify-content-center">
+                        <input type="radio" id="other" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="other">
+                        <label for="other" class="form-check-label text-white ms-2">Other</label>
+                        @error('gender')
+                            <div class="invalid-feedback bg-danger text-white rounded mt-2 p-2">{{$message}}</div>
+                        @enderror
+                    </div>
                 </div>
             </div>
 

@@ -1,10 +1,10 @@
 @section('content')
     <div class="container-fluid" id="detailsThread">
-        <h1 class="text-white text-center">Details of Thread</h1>
+        <h1 class="text-white text-center"><i class="fa fa-info-circle"></i> Details of Thread</h1>
         <div class="row">
             <div class="col-xl-8 col-md-8 col-sm-10 m-auto">
                 <div class="card bg-transparent text-white p-0 mb-3 mt-3 border-0 rounded-top" style="min-height: 300px">
-                    <div class="card-header bg-info rounded-top border-0">
+                    <div class="card-header bg-info rounded-top pb-2 border-0">
                         <h3 class="d-inline">{{$thread->title}}</h3>
                         
                         @if (Auth::user()->name === 'Admin' || Auth::id() === $thread->user['id'])

@@ -110,7 +110,7 @@
                                                     @enderror
                                                 </div>
                                                 <div class="col-xl-1 col-md-2 col-sm-2 col-2 p-1">
-                                                    <button type="submit" class="btn btn-primary w-100 h-100 p-0" id=""><i class="fa fa-send" title="Send"></i></button>
+                                                    <button type="submit" class="btn btn-primary w-100 h-100 p-0" id=""><i class="fa fa-paper-plane" title="Send"></i></button>
                                                 </div>
                                             </div>
                                         </form>

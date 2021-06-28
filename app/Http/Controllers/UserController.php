@@ -49,7 +49,7 @@ class UserController extends Controller
         $request->validate([
             'full_name' => 'required | max:255',
             'job' => 'required | max:255',
-            'gender' => 'required | max:255',
+            'gender' => 'required',
             'date_of_birth' => 'required | max:255',
             'region' => 'required | max:255',
             'bio' => 'max:255'
@@ -164,6 +164,10 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->profile()->delete();
+        $user->thread()->delete();
+        $user->reply()->delete();
+        $user->like()->delete();
+        $user->dislike()->delete();
         $user->delete();
 
         return redirect(url('/'))->with('success', 'Your account deleted successfully.');

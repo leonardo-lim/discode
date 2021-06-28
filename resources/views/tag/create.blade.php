@@ -1,5 +1,5 @@
 @section('content')
-    <h1 class="text-white text-center">Add Tag</h1>
+    <h1 class="text-white text-center"><i class="fa fa-plus"></i> Add Tag</h1>
     <div class="container-fluid w-75" id="addTag">
         <form action="{{url('/tag')}}" method="POST">
             @csrf

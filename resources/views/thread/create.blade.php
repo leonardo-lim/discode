@@ -1,5 +1,5 @@
 @section('content')
-    <h1 class="text-white text-center">Add Thread</h1>
+    <h1 class="text-white text-center"><i class="fa fa-plus"></i> Add Thread</h1>
     <div class="container-fluid w-75" id="addThread">
         <form action="{{url('/thread')}}" method="POST">
             @csrf

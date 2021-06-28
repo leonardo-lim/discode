@@ -248,6 +248,8 @@ class ThreadController extends Controller
         $thread = Thread::find($id);
         $thread->reply()->delete();
         $thread->tag()->detach();
+        $thread->like()->delete();
+        $thread->dislike()->delete();
         $thread->delete();
 
         return redirect(url('/thread'))->with('success', 'A thread deleted successfully.');

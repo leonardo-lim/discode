@@ -34,6 +34,14 @@
         </div>
 
         <div class="row" id="listThread">
+            @if ($total === 0)
+                <div class="col-4 m-auto">
+                    <div class="card bg-transparent text-white p-0 mb-5 border-0 justify-content-center" style="height: 300px">
+                        <h5 class="text-center text-white">No thread has posted yet</h5>
+                    </div>
+                </div>
+            @endif
+
             @foreach ($threads as $thread)
                 <div class="col-xl-4 col-md-6">
                     <div class="card bg-transparent text-white p-0 mb-5 border-0" style="height: 300px">

@@ -1,5 +1,5 @@
 @section('content')
-    <h1 class="text-white text-center">Edit Reply</h1>
+    <h1 class="text-white text-center"><i class="fa fa-edit"></i> Edit Reply</h1>
     <div class="container-fluid w-75" id="editReply">
         <form action="{{route('reply.update',$reply->id)}}" method="POST">
             @method('put')
@@ -18,7 +18,7 @@
                     <a href="/thread/{{$reply->thread_id}}" class="btn btn-info text-white d-block"><i class="fa fa-times"></i> Cancel</a>
                 </div>
                 <div class="col-6">
-                    <button type="submit" class="btn btn-primary w-100"><i class="fa fa-refresh"></i> Update</button>    
+                    <button type="submit" class="btn btn-primary w-100"><i class="fa fa-check"></i> Update</button>    
                 </div>
             </div>
         </form>

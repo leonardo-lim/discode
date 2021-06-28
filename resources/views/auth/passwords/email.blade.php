@@ -35,7 +35,7 @@
                             <div class="form-group row">
                                 <div class="col">
                                     <button type="submit" class="btn btn-info text-white mt-2 w-100">
-                                        <i class="fa fa-send"></i> {{ __('Send Password Reset Link') }}
+                                        <i class="fa fa-paper-plane"></i> {{ __('Send Password Reset Link') }}
                                     </button>
                                 </div>
                             </div>

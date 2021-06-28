@@ -1,7 +1,7 @@
 @section('content')
     @foreach ($profiles as $profile)
         @if (Auth::id() === $profile->user_id)
-            <h1 class="text-white text-center">Edit User</h1>
+            <h1 class="text-white text-center"><i class="fa fa-edit"></i> Edit Account</h1>
             <div class="container-fluid w-75" id="editUser">
                 <form action="{{route('user.update', $profile->id)}}" method="POST">
                     @method('put')
@@ -24,12 +24,33 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="input-group m-auto mb-3">
-                            <input type="text" class="form-control @error('gender') is-invalid @enderror" name="gender" placeholder="Edit Gender" value="{{$profile->gender}}">
-                            @error('gender')
-                                <div class="invalid-feedback bg-danger text-white rounded mt-2 p-2">{{$message}}</div>
-                            @enderror
+                    <div class="row border border-1 p-1 m-0 mb-3 rounded">
+                        <div class="col-4">
+                            <div class="form-check d-flex justify-content-center">
+                                <input type="radio" id="male" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="male" @if ($profile->gender === 'male') checked @endif>
+                                <label for="male" class="form-check-label text-white ms-2">Male</label>
+                                @error('gender')
+                                    <div class="invalid-feedback bg-danger text-white rounded mt-2 p-2">{{$message}}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-check d-flex justify-content-center">
+                                <input type="radio" id="female" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="female"  @if ($profile->gender === 'female') checked @endif>
+                                <label for="female" class="form-check-label text-white ms-2">Female</label>
+                                @error('gender')
+                                    <div class="invalid-feedback bg-danger text-white rounded mt-2 p-2">{{$message}}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-check d-flex justify-content-center">
+                                <input type="radio" id="other" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="other"  @if ($profile->gender === 'other') checked @endif>
+                                <label for="other" class="form-check-label text-white ms-2">Other</label>
+                                @error('gender')
+                                    <div class="invalid-feedback bg-danger text-white rounded mt-2 p-2">{{$message}}</div>
+                                @enderror
+                            </div>
                         </div>
                     </div>
 
@@ -65,7 +86,7 @@
                             <a href="/user/{{$user->id}}" class="btn btn-info text-white d-block"><i class="fa fa-times"></i> Cancel</a>
                         </div>
                         <div class="col-6">
-                            <button type="submit" class="btn btn-primary w-100"><i class="fa fa-refresh"></i> Update</button>    
+                            <button type="submit" class="btn btn-primary w-100"><i class="fa fa-check"></i> Update</button>    
                         </div>
                     </div>
                 </form>

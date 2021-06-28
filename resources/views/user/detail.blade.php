@@ -1,9 +1,9 @@
 @section('content')
     <div class="container-fluid" id="detailsUser">
         @if (Auth::id() === $user->id)
-            <h1 class="text-white text-center">My Profile</h1>
+            <h1 class="text-white text-center"><i class="fa fa-user"></i> My Profile</h1>
         @else
-            <h1 class="text-white text-center">User Profile</h1>
+            <h1 class="text-white text-center"><i class="fa fa-user"></i> User Profile</h1>
         @endif
 
         <div class="row">
@@ -84,58 +84,103 @@
                                     </div>
                                 </div>
 
-                                <div class="row mx-1 mt-3">
-                                    @php($count = 0)
-                                    @foreach ($threads as $thread)
-                                        @if ($thread->user_id === $user->id)
-                                            @php($count++)
-                                        @endif
-                                    @endforeach
+                                @php($threadCount = 0)
+                                @foreach ($threads as $thread)
+                                    @if ($thread->user_id === $user->id)
+                                        @php($threadCount++)
+                                    @endif
+                                @endforeach
 
+                                @php($replyCount = 0)
+                                @foreach ($replies as $reply)
+                                    @if ($reply->user_id === $user->id)
+                                        @php($replyCount++)
+                                    @endif
+                                @endforeach
+
+                                @php($likeCount = 0)
+                                @foreach ($threads as $thread)
+                                    @if ($thread->user_id === $user->id)
+                                        @foreach ($likes as $like)
+                                            @if ($like->thread_id === $thread->id && $like->is_liked)
+                                                @php($likeCount++)
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                @endforeach
+
+                                <div class="row mx-1 mt-3">
+                                    <div class="col-6 p-0 pt-3 text-center bg-info rounded">
+                                        @if ($likeCount >= 1000)
+                                            <p><i class="fa fa-dragon fa-lg"></i> Expert Dragon</p>
+                                        @elseif ($likeCount >= 500)
+                                            <p><i class="fa fa-otter fa-lg"></i> Advanced Otter</p>
+                                        @elseif ($likeCount >= 100)
+                                            <p><i class="fa fa-frog fa-lg"></i> Intermediate Frog</p>
+                                        @elseif ($likeCount >= 50)
+                                            <p><i class="fa fa-hippo fa-lg"></i> Beginner Hippo</p>
+                                        @else
+                                            <p><i class="fa fa-fish fa-lg"></i> Newbie Fish</p>
+                                        @endif
+                                    </div>
+                                    <div class="col-6 p-0 pt-3 text-center bg-purple rounded">
+                                        @if ($likeCount >= 1000)
+                                            <p><i class="fa fa-fire"></i> You've reached the max role!</p>
+                                        @elseif ($likeCount >= 500)
+                                            @if (1000 - $likeCount > 1)
+                                                <p><i class="fa fa-arrow-up"></i> {{1000 - $likeCount}} likes more to level up</p>
+                                            @else
+                                                <p><i class="fa fa-arrow-up"></i> {{1000 - $likeCount}} like more to level up</p>
+                                            @endif
+                                        @elseif ($likeCount >= 100)
+                                            @if (500 - $likeCount > 1)
+                                                <p><i class="fa fa-arrow-up"></i> {{500 - $likeCount}} likes more to level up</p>
+                                            @else
+                                                <p><i class="fa fa-arrow-up"></i> {{500 - $likeCount}} like more to level up</p>
+                                            @endif
+                                        @elseif ($likeCount >= 50)
+                                            @if (100 - $likeCount > 1)
+                                                <p><i class="fa fa-arrow-up"></i> {{100 - $likeCount}} likes more to level up</p>
+                                            @else
+                                                <p><i class="fa fa-arrow-up"></i> {{100 - $likeCount}} like more to level up</p>
+                                            @endif
+                                        @else
+                                            @if (50 - $likeCount > 1)
+                                                <p><i class="fa fa-arrow-up"></i> {{50 - $likeCount}} likes more to level up</p>
+                                            @else
+                                                <p><i class="fa fa-arrow-up"></i> {{50 - $likeCount}} like more to level up</p>
+                                            @endif
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="row mx-1 mt-3">
                                     <div class="col-4 p-0 pt-3 text-center bg-primary rounded">
-                                        @if ($count > 1)
-                                            <h2>{{$count}}</h2>
+                                        @if ($threadCount > 1)
+                                            <h2>{{$threadCount}}</h2>
                                             <p>threads posted</p>
                                         @else
-                                            <h2>{{$count}}</h2>
+                                            <h2>{{$threadCount}}</h2>
                                             <p>thread posted</p>
                                         @endif
                                     </div>
 
-                                    @php($count = 0)
-                                    @foreach ($replies as $reply)
-                                        @if ($reply->user_id === $user->id)
-                                            @php($count++)
-                                        @endif
-                                    @endforeach
-
                                     <div class="col-4 p-0 pt-3 text-center bg-danger rounded">
-                                        @if ($count > 1)
-                                            <h2>{{$count}}</h2>
+                                        @if ($replyCount > 1)
+                                            <h2>{{$replyCount}}</h2>
                                             <p>threads replied</p>
                                         @else
-                                            <h2>{{$count}}</h2>
+                                            <h2>{{$replyCount}}</h2>
                                             <p>thread replied</p>
                                         @endif
                                     </div>
 
-                                    @php($count = 0)
-                                    @foreach ($threads as $thread)
-                                        @if ($thread->user_id === $user->id)
-                                            @foreach ($likes as $like)
-                                                @if ($like->thread_id === $thread->id && $like->is_liked)
-                                                    @php($count++)
-                                                @endif
-                                            @endforeach
-                                        @endif
-                                    @endforeach
-
                                     <div class="col-4 p-0 pt-3 text-center bg-warning rounded">
-                                        @if ($count > 1)
-                                            <h2>{{$count}}</h2>
+                                        @if ($likeCount > 1)
+                                            <h2>{{$likeCount}}</h2>
                                             <p>likes gained</p>
                                         @else
-                                            <h2>{{$count}}</h2>
+                                            <h2>{{$likeCount}}</h2>
                                             <p>like gained</p>
                                         @endif
                                     </div>

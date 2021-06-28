@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Reply;
 use App\Thread;
+use App\Profile;
 
 class ReplyController extends Controller
 {

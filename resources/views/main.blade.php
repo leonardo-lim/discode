@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
 </head>
 <body>
@@ -70,7 +70,7 @@
                                     </li>
                                 @endif
                                 <li class="nav-item">
-                                    <a class="nav-link btn btn-primary" href="{{ route('login') }}"><i class="fa fa-sign-in"></i> {{ __('Login') }}</a>
+                                    <a class="nav-link btn btn-primary" href="{{ route('login') }}"><i class="fa fa-sign-in-alt"></i> {{ __('Login') }}</a>
                                 </li>
                             @else
                                 <li class="nav-item dropdown">
@@ -102,7 +102,7 @@
                                         @endif
                                         <a class="dropdown-item w-75" href="{{ route('logout') }}"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            <i class="fa fa-sign-out"></i> {{ __('Logout') }}
+                                            <i class="fa fa-sign-out-alt"></i> {{ __('Logout') }}
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -201,13 +201,13 @@
     
                 <div class="row mb-3">
                     <div class="col-4">
-                        <a href="https://www.instagram.com" class="text-primary text-decoration-none"><i class="fa fa-instagram"></i> Follow Us</a>
+                        <a href="https://www.instagram.com" class="text-primary text-decoration-none"><i class="fab fa-instagram"></i> Follow Us</a>
                     </div>
                     <div class="col-4">
-                        <a href="https://www.youtube.com" class="text-danger text-decoration-none"><i class="fa fa-youtube"></i> Subscribe Us</a>
+                        <a href="https://www.youtube.com" class="text-danger text-decoration-none"><i class="fab fa-youtube"></i> Subscribe Us</a>
                     </div>
                     <div class="col-4">
-                        <a href="https://www.whatsapp.com" class="text-success text-decoration-none"><i class="fa fa-whatsapp"></i> Chat Us</a>
+                        <a href="https://www.whatsapp.com" class="text-success text-decoration-none"><i class="fab fa-whatsapp"></i> Chat Us</a>
                     </div>
                 </div>
 

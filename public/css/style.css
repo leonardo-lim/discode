@@ -97,6 +97,25 @@ nav a:hover {
     }
 }
 
+@media (max-width: 992px) {
+    .navbar .nav-item .dropdown-menu {
+        display: block;
+    }
+
+    .navbar .nav-item .dropdown-menu {
+        position: static !important;
+        width: 50%;
+        display: block;
+        padding-right: 30px;
+        margin: auto;
+        text-align: center;
+    }
+    
+    .navbar .nav-item .dropdown-menu .dropdown-item {
+        display: inline;
+    }
+}
+
 .navbar-toggler .fa-bars {
     color: white;
     font-size: 30px;
@@ -105,8 +124,9 @@ nav a:hover {
 .collapse.show {
     position: relative;
     z-index: 1;
-    margin-top: 20px;
+    height: 500px;
     background-color: black;
+    margin-top: 20px;
     border-radius: 10px;
     transition: 0.1s;
 }
