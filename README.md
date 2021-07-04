@@ -1,3 +1,11 @@
+## Notes
+- Make sure there's internet connection for Bootstrap, Google Fonts, and Font Awesome loads.
+- Make sure node_modules, vendor, and .env exist in the folder.
+- For Admin access, add a user with 'Admin' name in users table.
+- For image, copy image file to the folder public/profile and set the url in profiles table in photo_url column.
+
+Our Developer
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
