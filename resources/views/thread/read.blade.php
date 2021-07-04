@@ -62,9 +62,9 @@
                             @endif
 
                             @if ($thread->is_locked)
-                                <span title="Locked" style="width: 40px"><i class="fa fa-lock"></i></span>
+                                <span title="Locked" class="ms-1" style="width: 40px"><i class="fa fa-lock"></i></span>
                             @else
-                                <span title="Opened" style="width: 40px"><i class="fa fa-unlock"></i></span>
+                                <span title="Opened" class="ms-1" style="width: 40px"><i class="fa fa-unlock"></i></span>
                             @endif
                         </div>
                         <div class="card-body d-flex flex-column">

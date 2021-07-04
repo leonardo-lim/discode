@@ -138,18 +138,6 @@ nav a:hover {
     text-align: center;
 }
 
-.wrapper {
-    position: relative;
-    height: 100vh;
-}
-
-.jumbotron {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
 .footer {
     box-shadow: rgba(0, 225, 255, 0.5) 0px 4px 16px,
         rgba(0, 255, 255, 0.5) 0px 8px 32px;
@@ -172,6 +160,226 @@ video {
         width: auto;
         height: 100%;
     }
+}
+
+/* Home */
+.wrapper {
+    position: relative;
+    height: 100vh;
+}
+
+.jumbotron {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
+
+.jumbotron .photo {
+    transform: translateX(-300px);
+    opacity: 0;
+    transition: 1s;
+}
+
+.jumbotron .photo.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.jumbotron .tagline {
+    transform: translateX(300px);
+    opacity: 0;
+    transition: 1s;
+}
+
+.jumbotron .tagline.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.jumbotron hr {
+    transform: translateY(100px);
+    transition: 1s;
+}
+
+.jumbotron hr.show {
+    transform: translateY(0);
+}
+
+.jumbotron .desc {
+    transform: translateY(50px);
+    transition: 1s;
+}
+
+.jumbotron .desc.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.jumbotron .btn-see {
+    transform: translateY(-50px);
+    transition: 1s;
+}
+
+.jumbotron .btn-see.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.why-us .why-us-title {
+    transform: translateY(-100px);
+    opacity: 0;
+    transition: 1s;
+}
+
+.why-us .why-us-title.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.why-us .why-us-photo {
+    transform: translateY(-100px);
+    opacity: 0;
+    transition: 1s;
+}
+
+.why-us .why-us-photo.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.why-us .why-us-desc {
+    transform: translateY(100px);
+    opacity: 0;
+    transition: 1s;
+}
+
+.why-us .why-us-desc.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* About */
+.built-with .built-with-photo {
+    transform: translateX(-300px);
+    opacity: 0;
+    transition: 1s;
+}
+
+.built-with .built-with-photo.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.built-with .built-with-title {
+    transform: translateY(-100px);
+    opacity: 0;
+    transition: 1s;
+}
+
+.built-with .built-with-title.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.built-with .built-with-desc {
+    transform: translateY(-100px);
+    opacity: 0;
+    transition: 1s;
+}
+
+.built-with .built-with-desc.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.project-details .project-details-photo {
+    transform: translateX(-300px);
+    opacity: 0;
+    transition: 1s;
+}
+
+.project-details .project-details-photo.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.project-details .project-details-title {
+    transform: translateY(-100px);
+    opacity: 0;
+    transition: 1s;
+}
+
+.project-details .project-details-title.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.project-details .project-details-desc {
+    transform: translateY(-100px);
+    opacity: 0;
+    transition: 1s;
+}
+
+.project-details .project-details-desc.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.our-dev .our-dev-photo-left {
+    transform: rotate(-90deg);
+    opacity: 0;
+    transition: 1s;
+}
+
+.our-dev .our-dev-photo-left.show {
+    transform: rotate(0);
+    opacity: 1;
+}
+
+.our-dev .our-dev-photo-right {
+    transform: rotate(90deg);
+    opacity: 0;
+    transition: 1s;
+}
+
+.our-dev .our-dev-photo-right.show {
+    transform: rotate(0);
+    opacity: 1;
+}
+
+.our-dev .our-dev-title {
+    transform: translateY(-100px);
+    opacity: 0;
+    transition: 1s;
+}
+
+.our-dev .our-dev-title.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.our-dev .our-dev-desc-left {
+    transform: translateY(-100px);
+    opacity: 0;
+    transition: 1s;
+}
+
+.our-dev .our-dev-desc-left.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.our-dev .our-dev-desc-right {
+    transform: translateY(-100px);
+    opacity: 0;
+    transition: 1s;
+}
+
+.our-dev .our-dev-desc-right.show {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 /* Login */

@@ -4,29 +4,31 @@
             <div class="jumbotron text-white text-center" style="width: 90%">
                 <div class="row">
                     <div class="col-5">
-                        <img src="{{ asset('img/dreamer.png') }}" class="float-end w-100" alt="Welcome">
+                        <img src="{{ asset('img/dreamer.png') }}" class="float-end w-100 photo" alt="Welcome">
                     </div>
                     <div class="col-7 my-auto">
-                        <h1 class="display-4 text-start">Welcome to Discode!</h1>
-                        <p class="lead text-start">where people come and share their opinion.</p>
+                        <h1 class="display-4 text-start tagline">Welcome to Discode!</h1>
+                        <p class="lead text-start tagline">where people come and share their opinion.</p>
                     </div>
                 </div>
                 <div class="row">
-                    <hr class="my-4">
-                    <p>Click button below to see what people share.</p>
+                    <hr class="my-4 hr">
+                    <p class="desc">Click button below to see what people share.</p>
                     <p class="lead">
-                        <a class="btn btn-primary btn-lg" href="/thread" role="button"><i class="fa fa-eye"></i> See Thread</a>
+                        <a class="btn btn-primary btn-lg btn-see w-50" href="/thread" role="button"><i class="fa fa-eye"></i> See Thread</a>
                     </p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row why-us">
         <hr class="bg-white mb-5">
+        <h1 class="text-center text-white mb-5 why-us-title"><i class="fa fa-question"></i> Why Us</h1>
+
         <div class="col-md-4 col-12 mb-5">
-            <img src="{{ asset('img/trends.png') }}" class="w-100 rounded" alt="Trends">
-            <div class="card bg-transparent text-white p-0 mt-3 border-0">
+            <img src="{{ asset('img/trends.png') }}" class="w-100 rounded why-us-photo" alt="Trends">
+            <div class="card bg-transparent text-white p-0 mt-3 border-0 why-us-desc">
                 <div class="card-header rounded-top overflow-hidden border-0">
                     <h3 class="text-center text-white m-0"><i class="fa fa-fire text-info"></i> Trend Topic</h3>
                 </div>
@@ -35,9 +37,10 @@
                 </div>
             </div>
         </div>
+
         <div class="col-md-4 col-12 mb-5">
-            <img src="{{ asset('img/fast.png') }}" class="w-100 rounded" alt="Fast">
-            <div class="card bg-transparent text-white p-0 mt-3 border-0">
+            <img src="{{ asset('img/fast.png') }}" class="w-100 rounded why-us-photo" alt="Fast">
+            <div class="card bg-transparent text-white p-0 mt-3 border-0 why-us-desc">
                 <div class="card-header rounded-top overflow-hidden border-0">
                     <h3 class="text-center text-white m-0"><i class="fa fa-spinner text-info"></i> Fast Server Loading</h3>
                 </div>
@@ -46,9 +49,10 @@
                 </div>
             </div>
         </div>
+
         <div class="col-md-4 col-12 mb-5">
-            <img src="{{ asset('img/secure.png') }}" class="w-100 rounded" alt="Secure">
-            <div class="card bg-transparent text-white p-0 mt-3 border-0">
+            <img src="{{ asset('img/secure.png') }}" class="w-100 rounded why-us-photo" alt="Secure">
+            <div class="card bg-transparent text-white p-0 mt-3 border-0 why-us-desc">
                 <div class="card-header rounded-top overflow-hidden border-0">
                     <h3 class="text-center text-white m-0"><i class="fa fa-lock text-info"></i> High Level of Security</h3>
                 </div>
@@ -59,27 +63,3 @@
         </div>
     </div>
 @endsection
-
-{{-- @extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection --}}
