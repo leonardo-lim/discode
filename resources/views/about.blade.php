@@ -51,7 +51,7 @@
                 <p class="text-primary our-dev-desc-left"><i class="fa fa-graduation-cap"></i> Student at Binus University</p>
                 <a href="https://www.instagram.com/leonardo.lim_" class="text-info text-decoration-none d-block our-dev-desc-left"><i class="fab fa-instagram"></i> leonardolim78</a>
                 <a href="https://www.github.com/leonardo-lim" class="text-info text-decoration-none d-block our-dev-desc-left"><i class="fab fa-github"></i> leonardo-lim</a>
-                <a href="https://www.linkedin.com/in/leonardo-lim-b1816a137" class="text-info text-decoration-none d-block our-dev-desc-left"><i class="fab fa-linkedin"></i> Leonardo Lim</a>
+                <a href="https://www.linkedin.com/in/leonardo-lim" class="text-info text-decoration-none d-block our-dev-desc-left"><i class="fab fa-linkedin"></i> Leonardo Lim</a>
             </div>
             <div class="col-md-6 col-12 text-center text-white">
                 <img src="{{ asset('profile/julian.jpg') }}" class="rounded-circle img-thumbnail d-block m-auto mb-3 our-dev-photo-right" width="300" height="300" alt="Profile Picture">
@@ -59,7 +59,7 @@
                 <p class="text-primary our-dev-desc-right"><i class="fab fa-graduation-cap"></i> Student at Binus University</p>
                 <a href="https://www.instagram.com/julian_aliwardana" class="text-info text-decoration-none d-block our-dev-desc-right"><i class="fab fa-instagram"></i> julian_aliwardana</a>
                 <a href="https://github.com/julianaliwardana" class="text-info text-decoration-none d-block our-dev-desc-right"><i class="fab fa-github "></i> julianaliwardana</a>
-                <a href="https://www.linkedin.com/in/julian-alifirman-wardana-45a979206/" class="text-info text-decoration-none d-block our-dev-desc-right"><i class="fab fa-linkedin"></i> Julian Alifirman Wardana</a>
+                <a href="https://www.linkedin.com/in/julianaw30" class="text-info text-decoration-none d-block our-dev-desc-right"><i class="fab fa-linkedin"></i> Julian Alifirman Wardana</a>
             </div>
         </div>
     </div>
