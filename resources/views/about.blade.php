@@ -49,7 +49,7 @@
                 <img src="{{ asset('profile/leo.jpg') }}" class="rounded-circle img-thumbnail d-block m-auto mb-3 our-dev-photo-left" width="300" height="300" alt="Profile Picture">
                 <h1 class="our-dev-desc-left">Leonardo L.</h1>
                 <p class="text-primary our-dev-desc-left"><i class="fa fa-graduation-cap"></i> Student at Binus University</p>
-                <a href="https://www.instagram.com/leonardolim78" class="text-info text-decoration-none d-block our-dev-desc-left"><i class="fab fa-instagram"></i> leonardolim78</a>
+                <a href="https://www.instagram.com/leonardo.lim_" class="text-info text-decoration-none d-block our-dev-desc-left"><i class="fab fa-instagram"></i> leonardolim78</a>
                 <a href="https://www.github.com/leonardo-lim" class="text-info text-decoration-none d-block our-dev-desc-left"><i class="fab fa-github"></i> leonardo-lim</a>
                 <a href="https://www.linkedin.com/in/leonardo-lim-b1816a137" class="text-info text-decoration-none d-block our-dev-desc-left"><i class="fab fa-linkedin"></i> Leonardo Lim</a>
             </div>
